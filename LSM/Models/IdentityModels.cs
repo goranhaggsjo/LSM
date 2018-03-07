@@ -16,7 +16,26 @@ namespace LSM.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        public virtual Course Course { get; set; }
+        public int Course_Id { get; set; }
+        
+
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string FullName { get { return FirstName + ' ' + LastName; } }
     }
+
+    //public class MemberDataSet
+    //{
+    //    [Key]
+    //    [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+    //    public int Id { get; set; }
+
+    //    public int? DeferredDataId { get; set; }
+    //    [ForeignKey("DeferredDataId")]
+    //    public virtual DeferredData DeferredData { get; set; }
+    //}
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
@@ -27,7 +46,16 @@ namespace LSM.Models
 
         public static ApplicationDbContext Create()
         {
+           
+
+
+
             return new ApplicationDbContext();
         }
+
+        public DbSet<Course> Courses { get; set; }
+        public DbSet<Module> Modules { get; set; }
+        public DbSet<Activity> Activitys { get; set; }
+        public DbSet<Document> Documents { get; set; }
     }
 }
