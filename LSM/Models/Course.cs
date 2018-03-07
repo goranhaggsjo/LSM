@@ -12,10 +12,9 @@ namespace LSM.Models
         public string Description { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime StopDate { get; set; }
-        public ICollection<ApplicationUser> Users { get; set; }
 
-        public ICollection<Module> Modules { get; set; }
-
-        public ICollection<Document> Documents { get; set; }
+        public virtual ICollection<ApplicationUser> Users { get; set; }
+        public virtual ICollection<Module> Modules { get; set; }
+        public virtual ICollection<Document> Documents { get; set; }
     }
 }

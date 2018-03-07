@@ -18,7 +18,7 @@ namespace LSM.Models
         }
 
         public virtual Course Course { get; set; }
-        public int Course_Id { get; set; }
+        public int? CourseId { get; set; }
         
 
         public string FirstName { get; set; }
@@ -46,9 +46,6 @@ namespace LSM.Models
 
         public static ApplicationDbContext Create()
         {
-           
-
-
 
             return new ApplicationDbContext();
         }
