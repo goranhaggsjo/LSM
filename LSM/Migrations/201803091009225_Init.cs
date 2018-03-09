@@ -3,7 +3,7 @@ namespace LSM.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class init1 : DbMigration
+    public partial class Init : DbMigration
     {
         public override void Up()
         {
@@ -27,7 +27,7 @@ namespace LSM.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Desription = c.String(),
+                        Description = c.String(),
                         Timestamp = c.DateTime(nullable: false),
                         Filepath = c.String(),
                         ApplicationUserId = c.Int(),

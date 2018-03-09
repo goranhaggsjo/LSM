@@ -34,6 +34,24 @@ namespace LSM.Migrations
 
             // En massa komplicerad kod för att skapa nya användare och roller !!
 
+
+            var courses = new List<Course>   
+            {
+                new Course { Name = "Java", Description = "Coding Java",
+                    StartDate = DateTime.Parse("2010-09-01"), StopDate = DateTime.Parse("2010-09-01")},
+                new Course { Name = "Python", Description = "Coding Pyhton",
+                    StartDate = DateTime.Parse("2010-09-01"), StopDate = DateTime.Parse("2010-09-01")},
+                new Course { Name = "Skiing", Description = "Hahnenkamm Rennen",
+                    StartDate = DateTime.Parse("2010-09-01"), StopDate = DateTime.Parse("2010-09-01")},
+                new Course { Name = "Packrafting", Description = "Nittälven",
+                    StartDate = DateTime.Parse("2010-09-01"), StopDate = DateTime.Parse("2010-09-01")},
+                new Course { Name = "Biking",   Description = "Over the alps", 
+                    StartDate = DateTime.Parse("2010-09-01"), StopDate = DateTime.Parse("2010-09-01")}
+            };
+
+            courses.ForEach(s => context.Courses.AddOrUpdate(p => p.Name, s));
+            context.SaveChanges();
+
             
             var roleStore = new RoleStore<IdentityRole>(context);
             var roleManager = new RoleManager<IdentityRole>(roleStore);
@@ -70,7 +88,8 @@ namespace LSM.Migrations
                     UserName = email,
                     Email = email,
                     FirstName = "Gandalf",
-                    LastName = "Grey"   
+                    LastName = "Grey",
+                    CourseId = courses[1].Id
                 };
                 var result = userManager.Create(user, "Gandalf1!");
                 if (!result.Succeeded)
@@ -81,51 +100,37 @@ namespace LSM.Migrations
 
             var u1 = userManager.FindByName("gandalf@aa.se");
             userManager.AddToRole(u1.Id, "Teacher");
+            u1.CourseId = null;
 
             var u2 = userManager.FindByName("galadriel@aa.se");
             userManager.AddToRole(u2.Id, "Teacher");
+            u2.CourseId = null;
 
             var u3 = userManager.FindByName("frodo@aa.se");
             userManager.AddToRoles(u3.Id, "Teacher");
+            u3.CourseId = null;
 
             var u4 = userManager.FindByName("gimli@aa.se");
             userManager.AddToRoles(u4.Id, "Student");
+            u4.CourseId = 2;
 
             var u5 = userManager.FindByName("knatte@aa.se");
             userManager.AddToRoles(u5.Id, "Student");
+            u5.CourseId = 4;
 
             var u6 = userManager.FindByName("fnatte@aa.se");
             userManager.AddToRoles(u6.Id, "Student");
+            u6.CourseId = 4;
 
             var u7 = userManager.FindByName("tjatte@aa.se");
             userManager.AddToRoles(u7.Id, "Student");
+            u7.CourseId = 5;
 
+            //u4.CourseId = courses[0].Id;
+            //u5.CourseId = courses[1].Id;
+            //u6.CourseId = courses[2].Id;
+            //u7.CourseId = courses[3].Id;
 
-
-
-
-            var courses = new List<Course>   
-            {
-                new Course { Name = "Java", Description = "Coding Java",
-                    StartDate = DateTime.Parse("2010-09-01"), StopDate = DateTime.Parse("2010-09-01"), Id = 2 },
-                new Course { Name = "Python", Description = "Coding Pyhton",
-                    StartDate = DateTime.Parse("2010-09-01"), StopDate = DateTime.Parse("2010-09-01"), Id = 3 },
-                new Course { Name = "Skiing", Description = "Hahnenkamm Rennen",
-                    StartDate = DateTime.Parse("2010-09-01"), StopDate = DateTime.Parse("2010-09-01"), Id = 4 },
-                new Course { Name = "Packrafting", Description = "Nittälven",
-                    StartDate = DateTime.Parse("2010-09-01"), StopDate = DateTime.Parse("2010-09-01"), Id = 5 },
-                new Course { Name = "Biking",   Description = "Over the alps", 
-                    StartDate = DateTime.Parse("2010-09-01"), StopDate = DateTime.Parse("2010-09-01"), Id = 6 }
-            };
-
-
-            u4.CourseId = 5;
-            u5.CourseId = 5;
-            u6.CourseId = 6;
-            u7.CourseId = 6;
-
-            courses.ForEach(s => context.Courses.AddOrUpdate(p => p.Name, s));
-            context.SaveChanges();
 
             var modules = new List<Module>
             {

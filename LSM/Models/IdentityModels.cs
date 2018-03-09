@@ -18,7 +18,7 @@ namespace LSM.Models
         }
 
         public virtual Course Course { get; set; }
-        public int CourseId { get; set; }
+        public int? CourseId { get; set; }
         
 
         public string FirstName { get; set; }
