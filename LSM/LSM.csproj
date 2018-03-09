@@ -196,13 +196,12 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ModulesController.cs" />
-    <Compile Include="Controllers\ViewEditModuleController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201803091009225_Init.cs" />
-    <Compile Include="Migrations\201803091009225_Init.Designer.cs">
-      <DependentUpon>201803091009225_Init.cs</DependentUpon>
+    <Compile Include="Migrations\201803091324007_Test.cs" />
+    <Compile Include="Migrations\201803091324007_Test.Designer.cs">
+      <DependentUpon>201803091324007_Test.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -300,7 +299,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\NewFolder1\" />
-    <Folder Include="Views\ViewEditModule\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -316,8 +314,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201803091009225_Init.resx">
-      <DependentUpon>201803091009225_Init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201803091324007_Test.resx">
+      <DependentUpon>201803091324007_Test.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
