@@ -115,6 +115,24 @@ namespace LSM.Controllers
             return RedirectToAction("Index");
         }
 
+        // AddedHAQ
+        public ActionResult ShowUsers()
+        {
+            List<userview> users = new List<userview>();
+   
+            foreach(var user in db.Users)
+            {
+                var u = new userview();
+                u.FirstName = user.FirstName;
+                u.LastName = user.LastName;
+                u.email = user.Email;
+                users.Add(u);
+            }
+
+
+            return View(users.ToList());
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

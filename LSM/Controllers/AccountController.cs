@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using LSM.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace LSM.Controllers
 {
@@ -17,6 +18,9 @@ namespace LSM.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+
+        //  Added
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         public AccountController()
         {
@@ -151,8 +155,21 @@ namespace LSM.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName
+                };
                 var result = await UserManager.CreateAsync(user, model.Password);
+
+                // AddHAQ Roles when registering
+                var userStore = new UserStore<ApplicationUser>(db);
+                var userManager = new UserManager<ApplicationUser>(userStore);
+                var u1 = userManager.FindByName(model.Email);
+                if (model.Teacher)
+                    userManager.AddToRole(u1.Id, "Teacher");
+                else
+                    userManager.AddToRole(u1.Id, "Student");
+
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
