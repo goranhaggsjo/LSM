@@ -104,7 +104,7 @@ namespace LSM.Migrations
 
 
 
-            var courses = new List<Course>
+            var courses = new List<Course>   
             {
                 new Course { Name = "Java", Description = "Coding Java",
                     StartDate = DateTime.Parse("2010-09-01"), StopDate = DateTime.Parse("2010-09-01"), Id = 2 },
