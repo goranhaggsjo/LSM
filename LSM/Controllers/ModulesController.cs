@@ -17,7 +17,8 @@ namespace LSM.Controllers
         // GET: Modules
         public ActionResult Index()
         {
-            return View(db.Modules.ToList());
+            var modules = db.Modules.Include(m => m.Course);
+            return View(modules.ToList());
         }
 
         // GET: Modules/Details/5
@@ -38,6 +39,7 @@ namespace LSM.Controllers
         // GET: Modules/Create
         public ActionResult Create()
         {
+            ViewBag.CourseId = new SelectList(db.Courses, "Id", "Name");
             return View();
         }
 
@@ -46,7 +48,7 @@ namespace LSM.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,StartDate,StopDate,Course_Id")] Module module)
+        public ActionResult Create([Bind(Include = "Id,Name,Description,StartDate,StopDate,CourseId")] Module module)
         {
             if (ModelState.IsValid)
             {
@@ -55,6 +57,7 @@ namespace LSM.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.CourseId = new SelectList(db.Courses, "Id", "Name", module.CourseId);
             return View(module);
         }
 
@@ -70,6 +73,7 @@ namespace LSM.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.CourseId = new SelectList(db.Courses, "Id", "Name", module.CourseId);
             return View(module);
         }
 
@@ -78,7 +82,7 @@ namespace LSM.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,StartDate,StopDate,Course_Id")] Module module)
+        public ActionResult Edit([Bind(Include = "Id,Name,Description,StartDate,StopDate,CourseId")] Module module)
         {
             if (ModelState.IsValid)
             {
@@ -86,6 +90,7 @@ namespace LSM.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.CourseId = new SelectList(db.Courses, "Id", "Name", module.CourseId);
             return View(module);
         }
 

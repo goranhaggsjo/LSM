@@ -8,7 +8,7 @@ namespace LSM.Models
     public class Document
     {
         public int Id { get; set; }
-        public string Desription { get; set; }
+        public string Description { get; set; }
         public DateTime Timestamp { get; set; }
         public String Filepath { get; set; }
         
