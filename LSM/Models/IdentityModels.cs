@@ -18,7 +18,7 @@ namespace LSM.Models
         }
 
         public virtual Course Course { get; set; }
-        public int Course_Id { get; set; }
+        public int? CourseId { get; set; }
         
 
         public string FirstName { get; set; }
@@ -26,6 +26,9 @@ namespace LSM.Models
         public string FullName { get { return FirstName + ' ' + LastName; } }
     }
 
+
+    // Remeber: Forign KEY
+    // We didn't have to annotate like this below.
     //public class MemberDataSet
     //{
     //    [Key]
@@ -46,10 +49,6 @@ namespace LSM.Models
 
         public static ApplicationDbContext Create()
         {
-           
-
-
-
             return new ApplicationDbContext();
         }
 

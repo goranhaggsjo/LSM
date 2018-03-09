@@ -14,10 +14,10 @@ namespace LSM.Models
         public DateTime StopDate { get; set; }
 
         public virtual Course Course { get; set; }
-        public int Course_Id { get; set; }
+        public int CourseId { get; set; }
 
-        public ICollection<Activity> Activitys { get; set; }
-        public ICollection<Document> Documents { get; set; }
+        public virtual ICollection<Activity> Activitys { get; set; }
+        public virtual ICollection<Document> Documents { get; set; }
     }
 }
 
