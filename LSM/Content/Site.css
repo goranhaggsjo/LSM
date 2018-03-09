@@ -22,3 +22,22 @@ select,
 textarea {
     max-width: 280px;
 }
+table, th, td {
+    border: 2px solid black;
+
+}
+
+table {
+    margin: 20px 0px;
+}
+
+.table_div {
+    height: 400px;
+    overflow: auto;
+}
+
+
+
+
+
+
