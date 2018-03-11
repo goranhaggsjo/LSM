@@ -199,9 +199,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201803091009225_Init.cs" />
-    <Compile Include="Migrations\201803091009225_Init.Designer.cs">
-      <DependentUpon>201803091009225_Init.cs</DependentUpon>
+    <Compile Include="Migrations\201803080807438_InitialCreate.cs" />
+    <Compile Include="Migrations\201803080807438_InitialCreate.Designer.cs">
+      <DependentUpon>201803080807438_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803090923097_init.cs" />
+    <Compile Include="Migrations\201803090923097_init.Designer.cs">
+      <DependentUpon>201803090923097_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -237,6 +241,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\ScriptforLSM.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -291,9 +296,12 @@
     <Content Include="Views\Documents\Details.cshtml" />
     <Content Include="Views\Documents\Edit.cshtml" />
     <Content Include="Views\Documents\Index.cshtml" />
+    <Content Include="Views\Courses\ViewPage1.cshtml" />
+    <Content Include="Views\Modules\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -309,8 +317,11 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201803091009225_Init.resx">
-      <DependentUpon>201803091009225_Init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201803080807438_InitialCreate.resx">
+      <DependentUpon>201803080807438_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803090923097_init.resx">
+      <DependentUpon>201803090923097_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
