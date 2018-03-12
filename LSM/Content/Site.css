@@ -32,10 +32,11 @@ table, th, td {
 }*/
 
 .table_div {
-    height: 400px;
+    height: 100px;
     margin: 40px 0px;
     border: double;
     overflow: auto;
+    background-color: azure;
 }
 
 
