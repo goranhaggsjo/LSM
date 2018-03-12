@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using LSM.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace LSM.Controllers
 {
@@ -116,22 +118,66 @@ namespace LSM.Controllers
         }
 
         // AddedHAQ
+        // 
         public ActionResult ShowUsers()
         {
             List<userview> users = new List<userview>();
-   
-            foreach(var user in db.Users)
+            //var userStore = new UserStore<ApplicationUser>(db);
+            //var userManager = new UserManager<ApplicationUser>(userStore);
+            // var u1 = userManager.FindByName(model.Email);
+
+            foreach (var user in db.Users)
             {
                 var u = new userview();
                 u.FirstName = user.FirstName;
                 u.LastName = user.LastName;
                 u.email = user.Email;
+                //string rolename = userManager.GetRoles(user.Id).FirstOrDefault();
+                u.Role = "N/A";
                 users.Add(u);
             }
 
-
             return View(users.ToList());
+  
         }
+
+        
+        public ActionResult ShowCourseMod(int? id)
+        {
+            List<Module> m1 = new List<Module>();
+            Course course = db.Courses.Find(id);
+            ViewBag.Name = course.Name;
+            ViewBag.Description = course.Description;
+            ViewBag.Start = course.StartDate.ToString();
+            ViewBag.Id = id;
+
+            //var m1 = new Module();
+            foreach (var m in course.Modules)
+                m1.Add(m);
+
+            return View(m1);
+
+        }
+
+
+        
+        public ActionResult ShowCourseStud(int? id)
+        {
+            List<ApplicationUser> s1 = new List<ApplicationUser>();
+            Course course = db.Courses.Find(id);
+            //ViewBag.Name = course.Name;
+            //ViewBag.Description = course.Description;
+            //ViewBag.Start = course.StartDate.ToString();
+            //ViewBag.Id = id;
+
+            //var m1 = new Module();
+            foreach (var s in course.Users)
+                s1.Add(s);
+
+            return PartialView(s1);
+
+        }
+        
 
         protected override void Dispose(bool disposing)
         {
