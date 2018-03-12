@@ -1,20 +1,23 @@
 ﻿
-    $(document).ready(function () {
+$(document).ready(function () {
         
-   
-
-
-        alert("Test")
         
 
-        $("#button").on("click", function () {
-            alert("hej")
-            $("hej").html('@{ Html.RenderPartial("ViewPage1");}');
-            
-           
+
+});
 
 
-        });
+$("#buttonModules").on("click", function () {
 
+    $("#tableModules").show();
+    $("#tableStudents").hide();   
 
-    });
+});
+
+$("#buttonStudents").on("click", function () {
+
+    $("#tableStudents").show();
+    $("#tableModules").hide();
+    $("#buttonModules").removeClass("active")
+
+});
