@@ -9,7 +9,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
             @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
@@ -64,18 +64,57 @@
 
 
         </div>
-        <button id="button">Test</button>
-       <div id="hej">
+        <div class="col-md-8">
+            <h2>Modules</h2>
+            @Html.ActionLink("Create", "Create", "Modules", new { id = "" }, new { @class = "btn btn-success" })
+            <div class="table_div">
+                <table class="table">
+                    <tr>
+                        <th>A</th>
+                        <th>b</th>
+                        <th>c</th>
+                        <th>d</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model.Modules.ToList())
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Description</td>
+                    <td>@item.StartDate</td>
+                    <td>@item.StopDate</td>
+                    <td>@Html.ActionLink("Module info", "Edit", "Modules", new { id = item.Id }, new { @class = "btn  btn-info" })</td>
+                    <td>@Html.ActionLink("Delete", "Delete", "Modules", new { id = item.Id }, new { @class = "btn btn-danger" })</td>
+
+                </tr>
 
 
-       </div>
-       
+    }
+
+                    <tr></tr>
+                    <tr></tr>
+                    <tr></tr>
+                    <tr></tr>
+                    <tr></tr>
+                    <tr></tr>
+                    <tr></tr>
+                    <tr></tr>
+                    <tr></tr>
+                </table>
+
+            </div>
+
+        </div>
+
+
+
+
+        </div>
 
 
     </div>
-
-
-</div>
 
 @*<div>
         @Html.ActionLink("Back to List", "Index")
