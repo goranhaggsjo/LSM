@@ -292,7 +292,6 @@
     <Content Include="Views\Documents\Details.cshtml" />
     <Content Include="Views\Documents\Edit.cshtml" />
     <Content Include="Views\Documents\Index.cshtml" />
-    <Content Include="Views\Courses\ViewPage1.cshtml" />
     <Content Include="Views\Modules\View.cshtml" />
   </ItemGroup>
   <ItemGroup>

@@ -65,7 +65,7 @@
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Save" class="btn btn-default" />
+                        <input type="submit" value="Save" class="btn btn-success"/>
                         @Html.ActionLink("Delete", "Delete", new { id = Model.Id }, new { @class = "btn btn-danger" })
                     </div>
                 </div>
@@ -76,16 +76,17 @@
 
         @Html.ActionLink("Add new activity", "Create", "Activities", new { id = Model.Id }, new { @class = "btn btn-success" })
         <div class="col-md-6">
-            <table class="table">
-                <tr>
-                    <th>View/Edit</th>
-                    <th>Start</th>
-                    <th>End</th>
-                    <th></th>
-                </tr>
+            <div class="table_div">
+                <table class="table">
+                    <tr>
+                        <th>View/Edit</th>
+                        <th>Start</th>
+                        <th>End</th>
+                        <th></th>
+                    </tr>
 
 
-                @foreach (var item in Model.Activitys.ToList())
+                    @foreach (var item in Model.Activitys.ToList())
         {
             <tr>
                 <td>
@@ -103,17 +104,12 @@
             </tr>
 }
 
-            </table>
-
-           
-
-
+                </table>
+            </div>
+            </div>
         </div>
-    </div>
-
-</div>
-
-           
+     </div>
+       
 
             <div>
                 @Html.ActionLink("Back to List", "Index")
