@@ -53,8 +53,9 @@ namespace LSM.Controllers
             if (ModelState.IsValid)
             {
                 db.Modules.Add(module);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                db.SaveChanges();                    
+
+                return RedirectToAction("Edit", "Courses", new {id = module.CourseId });
             }
 
             ViewBag.CourseId = new SelectList(db.Courses, "Id", "Name", module.CourseId);
@@ -88,7 +89,7 @@ namespace LSM.Controllers
             {
                 db.Entry(module).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Edit", "Courses", new { id = module.CourseId });
             }
             ViewBag.CourseId = new SelectList(db.Courses, "Id", "Name", module.CourseId);
             return View(module);

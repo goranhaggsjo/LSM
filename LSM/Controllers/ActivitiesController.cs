@@ -54,7 +54,7 @@ namespace LSM.Controllers
             {
                 db.Activitys.Add(activity);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Edit", "Modules", new { id = activity.ModuleId });
             }
 
             ViewBag.ModuleId = new SelectList(db.Modules, "Id", "Name", activity.ModuleId);
