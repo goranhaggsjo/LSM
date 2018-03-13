@@ -31,11 +31,21 @@ table, th, td {
     margin: 20px 0px;
 }*/
 
+.btn {
+    margin: 10px 0px;
+}
+
 .table_div {
-    height: 400px;
-    margin: 40px 0px;
+    max-height: 400px;
+    margin: 10px 0px;
     border: double;
     overflow: auto;
+   
+}
+
+#tableStudents {
+    display:none;
+
 }
 
 
