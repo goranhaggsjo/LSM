@@ -74,8 +74,9 @@
     }
         </div>
 
-        @Html.ActionLink("Add new activity", "Create", "Activities", new { id = Model.Id }, new { @class = "btn btn-success" })
+        
         <div class="col-md-6">
+            @Html.ActionLink("Add new activity", "Create", "Activities", new { ModuleId = Model.Id }, new { @class = "btn btn-success" })
             <div class="table_div">
                 <table class="table">
                     <tr>
@@ -87,26 +88,27 @@
 
 
                     @foreach (var item in Model.Activitys.ToList())
-        {
-            <tr>
-                <td>
-                    @Html.ActionLink(item.Name, "Edit", "Activities", new { id = item.Id }, new { @class = "btn btn-info" })
-                </td>
-                <td>
-                    @item.StartDate
-                </td>
-                <td>
-                    @item.StopDate
-                </td>
-                <td>
-                    @Html.ActionLink("Delete", "Delete", "Activities", new { id = item.Id }, new { @class = "btn btn-danger" })
-                </td>
-            </tr>
-}
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink(item.Name, "Edit", "Activities", new { id = item.Id }, new { @class = "btn btn-info" })
+                    </td>
+                    <td>
+                        @item.StartDate
+                    </td>
+                    <td>
+                        @item.StopDate
+                    </td>
+                    <td>
+                        @Html.ActionLink("Delete", "Delete", "Activities", new { id = item.Id }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+    }
+
 
                 </table>
             </div>
-            </div>
+        </div>
         </div>
      </div>
        

@@ -24,7 +24,7 @@
                 <h4>Edit course</h4>
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                @Html.HiddenFor(model => model.Id)
+                @Html.HiddenFor(model => model.Id)               
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -80,7 +80,7 @@
 
 
             <div id="tableModules">
-                @Html.ActionLink("Add new module", "Create", "Modules", new { id = Model.Id }, new { @class = "btn btn-success" })
+                @Html.ActionLink("Add new module", "Create", "Modules", new { CourseId = Model.Id }, new { @class = "btn btn-success" })
                 <div class="table_div">
                     <table class="table">
                         <tr>
