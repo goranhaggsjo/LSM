@@ -120,6 +120,34 @@ namespace LSM.Controllers
             return RedirectToAction("Index");
         }
 
+
+        // AddedHAQ     GET: Modules/Create
+        // Called by Ajax from ShowCourseMod
+        public ActionResult Create2(int? courseId)
+        {
+            ViewBag.CourseId = new SelectList(db.Courses, "Id", "Name");
+            return PartialView();
+        }
+
+        // AddedHAQ
+        // POST: Modules/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create2([Bind(Include = "Id,Name,Description,StartDate,StopDate,CourseId")] Module module)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Modules.Add(module);
+                db.SaveChanges();
+                // course-id ?
+                // OK  return RedirectToAction("Index", "Courses");
+                return RedirectToAction("ShowCourseMod", "Courses", new { id = module.CourseId });
+            }
+
+            //ViewBag.CourseId = new SelectList(db.Courses, "Id", "Name", module.CourseId);
+            return PartialView();
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

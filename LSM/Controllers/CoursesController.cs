@@ -142,6 +142,8 @@ namespace LSM.Controllers
         }
 
         
+        // AddedHAQ
+        //  Input id is course id, send it back to next view in viewbag
         public ActionResult ShowCourseMod(int? id)
         {
             List<Module> m1 = new List<Module>();
@@ -160,24 +162,33 @@ namespace LSM.Controllers
         }
 
 
-        
+        // AddedHAQ
+        //  Testing partial view
         public ActionResult ShowCourseStud(int? id)
         {
             List<ApplicationUser> s1 = new List<ApplicationUser>();
             Course course = db.Courses.Find(id);
-            //ViewBag.Name = course.Name;
-            //ViewBag.Description = course.Description;
-            //ViewBag.Start = course.StartDate.ToString();
-            //ViewBag.Id = id;
-
-            //var m1 = new Module();
+           
             foreach (var s in course.Users)
                 s1.Add(s);
 
             return PartialView(s1);
-
         }
-        
+
+        // AddedHAQ
+        //  Testing Ajax view
+        //public PartialViewResult Act(int? moduleId)
+        public ActionResult Act(int? moduleId)
+        {
+            List<Activity> a1 = new List<Activity>();
+            Module mod = db.Modules.Find(moduleId);
+         
+            foreach (var a in mod.Activitys)
+                a1.Add(a);
+
+            return PartialView(a1);
+        }
+
 
         protected override void Dispose(bool disposing)
         {
