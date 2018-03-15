@@ -1,20 +1,21 @@
 ﻿@model IEnumerable<LSM.Models.Module>
 
 <br>
-<h2>
-    Course: @ViewBag.Name
-</h2>
-<h3>
-    Description: @ViewBag.Description
-</h3>
-<h3>
-    Start: @ViewBag.Start
-</h3>
-<! course id comes in viewbag.Id. Seems to survive the whole page, past ajax-calls and partial views  >
-<br>
 <div id="container">
     <div class="row">
         <div class="col-md-6">
+            <h2>
+                Course: @ViewBag.Name
+            </h2>
+            <h4>
+                Description: @ViewBag.Description
+            </h4>
+            <h4>
+                Start: @ViewBag.Start
+            </h4>
+            <! course id comes in viewbag.Id. Seems to survive the whole page, past ajax-calls and partial views  >
+            <br>
+
             <h4>
                 Modules
             </h4>
@@ -39,43 +40,43 @@
                 </tr>
 
                 @foreach (var item in Model)
-        {
-            <tr>
+                {
+                    <tr>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StartDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StopDate)
-                </td>
-                <td>
-                    <! Experimenting with ajax partial view >
-                    @Ajax.ActionLink("Show Activities", "Act", "Courses",
-                                                 new { moduleId = item.Id },
-                                                 new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "demo" },
-                                                 new { @class = "btn  btn-info" }    )
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StartDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StopDate)
+                        </td>
+                        <td>
+                            <! Experimenting with ajax partial view >
+                            @Ajax.ActionLink("Show Activities", "Act", "Courses",
+                                                              new { moduleId = item.Id },
+                                                              new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "demo" },
+                                                              new { @class = "btn  btn-info" })
 
-                    @*@Html.ActionLink("Show Activities", "Edit", new { id = item.Id })*@
-                </td>
-            </tr>
-}
+                            @*@Html.ActionLink("Show Activities", "Edit", new { id = item.Id })*@
+                        </td>
+                    </tr>
+                }
 
             </table>
 
             <br>
             <div>
-                @ViewBag.Id
-                @*@Html.ActionLink("Add Modules", "Index", "Courses", new { id = ViewBag.Id }, new { @class = "btn  btn-info" })*@
+                @*@ViewBag.Id*@
+                @*@Html.ActionLink("Add Modules", "Index", "Courses", new { id = ViewBag.Id }, new { @class = "btn  btn-primary" })*@
                 @Ajax.ActionLink("Add Module", "Create2", "Modules",
-                                         new { courseId = ViewBag.Id },
-                                         new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "demo" },
-                                         new { @class = "btn  btn-info" })
+                                              new { courseId = ViewBag.Id },
+                                              new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "demo" },
+                                              new { @class = "btn  btn-primary" })
             </div>
             <br>
             <div>
@@ -100,8 +101,12 @@
 
     <! check course id>
     <div>
-        @ViewBag.Id
-        @Html.ActionLink("Register more Students", "Index", "Courses", new { id = ViewBag.Id }, new { @class = "btn  btn-info" })
+        @*@ViewBag.Id*@
+        @Ajax.ActionLink("Register more Students", "Reg2", "Account",
+                                          new { courseId = ViewBag.Id },
+                                          new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "demo" },
+                                          new { @class = "btn  btn-primary" })
+       
     </div>
     <br>
     <div>

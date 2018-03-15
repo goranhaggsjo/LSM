@@ -309,6 +309,7 @@
     <Content Include="Views\Courses\ShowCourseStud.cshtml" />
     <Content Include="Views\Courses\Act.cshtml" />
     <Content Include="Views\Modules\Create2.cshtml" />
+    <Content Include="Views\Account\Reg2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -148,6 +148,8 @@ namespace LSM.Controllers
 
         //
         // POST: /Account/Register
+        // AddedHAQ, include course id
+        //  This method is called as POST, even if the GET is Reg2....
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -155,9 +157,19 @@ namespace LSM.Controllers
         {
             if (ModelState.IsValid)
             {
+                int i = 1;
+                string id = (string)TempData["courseId"];
+                string s = (string)TempData["student"];
+                if (Int32.TryParse(id, out i))
+                {
+                    //
+                }
+                
+               
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email,
                     FirstName = model.FirstName,
-                    LastName = model.LastName
+                    LastName = model.LastName,
+                    CourseId = i
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);
 
@@ -170,7 +182,18 @@ namespace LSM.Controllers
                 else
                     userManager.AddToRole(u1.Id, "Student");
 
+                
                 if (result.Succeeded)
+                {
+                    if(s == null)
+                        // Normal registration
+                        return RedirectToAction("Index", "Courses");
+                    else
+                        // From course-page
+                        return RedirectToAction("ShowCourseMod", "Courses", new { id = i });
+                }
+                
+                /*  Don't log in when registering
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
@@ -182,6 +205,7 @@ namespace LSM.Controllers
 
                     return RedirectToAction("Index", "Home");
                 }
+                */
                 AddErrors(result);
             }
 
@@ -419,6 +443,69 @@ namespace LSM.Controllers
         {
             return View();
         }
+
+
+        // GET: /Account/Register
+        // AddedHAQ   Register a Student. Ajax call from ShowCourseMod
+        //  This one works, and the view Reg2 works, but the post comes back to original Register above
+        [AllowAnonymous]
+        public ActionResult Reg2(int? courseId)
+        {
+            TempData["courseId"] = courseId.ToString();
+            TempData["student"] = "yes";
+            ViewBag.Id = courseId;
+            return PartialView();
+        }
+
+        //
+        // POST: /Account/Register
+        // AddedHAQ   Register a Student. Ajax call from ShowCourseMod
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Reg2(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                int i = (int)TempData["courseId"];
+                var user = new ApplicationUser
+                {
+                    CourseId = i,
+                    UserName = model.Email,
+                    Email = model.Email,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName
+                };
+                var result = await UserManager.CreateAsync(user, model.Password);
+
+                // AddHAQ Roles when registering
+                var userStore = new UserStore<ApplicationUser>(db);
+                var userManager = new UserManager<ApplicationUser>(userStore);
+                var u1 = userManager.FindByName(model.Email);
+
+                
+                 userManager.AddToRole(u1.Id, "Student");
+
+                if (result.Succeeded)
+                {
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
+                    // Send an email with this link
+                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+                    return RedirectToAction("Index", "Courses");
+                }
+                AddErrors(result);
+            }
+
+            // If we got this far, something failed, redisplay form
+            return PartialView(model);
+        }
+
+
 
         protected override void Dispose(bool disposing)
         {

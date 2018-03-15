@@ -5,7 +5,6 @@
 <div class="jumbotron">
     <h1>Lexicon LMS</h1>
     <p class="lead"></p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
 </div>
 
 <div class="row">
@@ -14,16 +13,18 @@
         <p>
             Many nice Courses here.
         </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        <p> @Html.ActionLink("Courses", "Index", "Courses", new { @class = "btn  btn-info" })</p>
     </div>
     <div class="col-md-4">
         <h2>For Teachers</h2>
         <p>Many cool Teachers here.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        <p> @Html.ActionLink("Courses", "Index", "Courses", new { @class = "btn  btn-info" })</p>
     </div>
     <div class="col-md-4">
         <h2>More Info</h2>
         <p>Applications, Grants, and more.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        <p> @Html.ActionLink("Courses", "Index", "Courses", new { @class = "btn  btn-info" })</p>
     </div>
 </div>
+
+@*@Html.ActionLink("Add Modules", "Index", "Courses", new { id = ViewBag.Id }, new { @class = "btn  btn-info" })*@

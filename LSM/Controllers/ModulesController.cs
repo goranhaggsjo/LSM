@@ -139,7 +139,7 @@ namespace LSM.Controllers
             {
                 db.Modules.Add(module);
                 db.SaveChanges();
-                // course-id ?
+                // course-id funkar !
                 // OK  return RedirectToAction("Index", "Courses");
                 return RedirectToAction("ShowCourseMod", "Courses", new { id = module.CourseId });
             }
