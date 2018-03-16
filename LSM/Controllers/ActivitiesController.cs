@@ -37,9 +37,9 @@ namespace LSM.Controllers
         }
 
         // GET: Activities/Create
-        public ActionResult Create()
+        public ActionResult Create(int ModuleId)
         {
-            ViewBag.ModuleId = new SelectList(db.Modules, "Id", "Name");
+            ViewBag.ModuleForActivity = ModuleId;
             return View();
         }
 
@@ -117,7 +117,8 @@ namespace LSM.Controllers
             Activity activity = db.Activitys.Find(id);
             db.Activitys.Remove(activity);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Edit", "Modules", new { id = activity.ModuleId });
+
         }
 
         protected override void Dispose(bool disposing)

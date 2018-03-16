@@ -11,13 +11,14 @@
     <h4>Module</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
+        // Fixa om utskrift för Kursnamn
+        @*<dt>
             @Html.DisplayNameFor(model => model.Course.Name)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Course.Name)
-        </dd>
+        </dd>*@
 
         <dt>
             @Html.DisplayNameFor(model => model.Name)
@@ -58,7 +59,7 @@
 
     <div class="form-actions no-color">
         <input type="submit" value="Delete" class="btn btn-danger" /> 
-        @Html.ActionLink("Back to Module", "Edit", new { id = Model.Id }, new { @class = "btn btn-info" })
+        @Html.ActionLink("Cancel", "Edit", new { id = Model.Id }, new { @class = "btn btn-info" })
     </div>
     }
 </div>

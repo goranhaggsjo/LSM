@@ -34,7 +34,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", rows = 15 } })
                         @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -83,7 +83,6 @@
                         <th>View/Edit</th>
                         <th>Start</th>
                         <th>End</th>
-                        <th></th>
                     </tr>
 
 
@@ -99,9 +98,6 @@
                     <td>
                         @item.StopDate
                     </td>
-                    <td>
-                        @Html.ActionLink("Delete", "Delete", "Activities", new { id = item.Id }, new { @class = "btn btn-danger" })
-                    </td>
                 </tr>
     }
 
@@ -111,12 +107,6 @@
         </div>
         </div>
      </div>
-       
-
-            <div>
-                @Html.ActionLink("Back to List", "Index")
-            </div>
-
-            @section Scripts {
+                   @section Scripts {
                 @Scripts.Render("~/bundles/jqueryval")
             }

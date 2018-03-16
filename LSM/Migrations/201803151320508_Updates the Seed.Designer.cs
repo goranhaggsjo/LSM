@@ -7,13 +7,13 @@ namespace LSM.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Init : IMigrationMetadata
+    public sealed partial class UpdatestheSeed : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Init));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(UpdatestheSeed));
         
         string IMigrationMetadata.Id
         {
-            get { return "201803121354566_Init"; }
+            get { return "201803151320508_Updates the Seed"; }
         }
         
         string IMigrationMetadata.Source
