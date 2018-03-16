@@ -4,8 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
-    @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/Content/bootstrap.css")
+    @Styles.Render("~/Content/css")
+
 
 </head>
 <body>
@@ -24,9 +26,6 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Course", "Index", "Courses")</li>
-                    <li>@Html.ActionLink("Module", "Index", "Modules")</li>
-                    <li>@Html.ActionLink("Activity", "Index", "Activities")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
