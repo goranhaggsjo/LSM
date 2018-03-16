@@ -8,6 +8,7 @@ namespace LSM.Models
     public class Module
     {
         public int Id { get; set; }
+        public int Place { get; set; }              // Place int lists, 
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime StartDate { get; set; }

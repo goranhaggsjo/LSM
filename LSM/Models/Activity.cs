@@ -5,17 +5,21 @@ using System.Web;
 
 namespace LSM.Models
 {
+    public enum Epass { FM = 1, EM, FMEM };
+
     public class Activity
     {
         public int Id { get; set; }
+        public int Place { get; set; }              // In the list, this is the place. 0 is no place.
         public string Name { get; set; }
         public string Description { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime StopDate { get; set; }
+        public DateTime Day { get; set; }
+        public Epass Pass { get; set; }
 
-        public virtual Module Module { get; set; }
-        public int ModuleId { get; set; }
+        public virtual Module Module { get; set; }  // Sign this is the foreign key
+        public int ModuleId { get; set; }           // And this is the key
 
         public virtual ICollection<Document> Documents { get; set; }
     }
+
 }

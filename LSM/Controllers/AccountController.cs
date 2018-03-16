@@ -84,7 +84,7 @@ namespace LSM.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal("/Courses/Index");
+                    return RedirectToLocal("/Courses/Index"); // This is teacher logged in page.
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -144,6 +144,7 @@ namespace LSM.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            ViewBag.Courses = new SelectList(db.Courses, "Id", "Name").ToList();
             return View();
         }
 
