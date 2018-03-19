@@ -87,8 +87,8 @@
                 <table class="table">
                     <tr>
                         <th>View/Edit</th>
-                        <th>Start</th>
-                        <th>End</th>
+                        <th>Day</th>
+                        <th>Pass</th>
                     </tr>
 
 
@@ -102,7 +102,18 @@
                                 @item.Day 
                             </td>
                             <td>
-                                @item.Pass
+                                @if (item.Pass == LSM.Models.Epass.FM)
+    {
+                            <p>Morning</p>
+}
+                                @if (item.Pass == LSM.Models.Epass.EM)
+    {
+                            <p>Afternoon</p>
+}
+                                @if (item.Pass == LSM.Models.Epass.FMEM)
+    {
+                            <p>Full day</p>
+}
                             </td>
                         </tr>
                     }
