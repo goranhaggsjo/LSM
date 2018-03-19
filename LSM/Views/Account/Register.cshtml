@@ -10,6 +10,7 @@
     @Html.AntiForgeryToken()
     <h4>Create a new account.</h4>
     <hr />
+    @Html.HiddenFor(model => model.CourseId)
     @Html.ValidationSummary("", new { @class = "text-danger" })
 
     <div class="form-group">

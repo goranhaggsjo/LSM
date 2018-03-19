@@ -142,7 +142,7 @@ namespace LSM.Controllers
         //
         // GET: /Account/Register
         [AllowAnonymous]
-        public ActionResult Register()
+        public ActionResult Register(int? CourseId)
         {
             return View();
         }
@@ -158,15 +158,20 @@ namespace LSM.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email,
-                    FirstName = model.FirstName,
-                    LastName = model.LastName
+                    FirstName = model.FirstName,                   
+                    LastName = model.LastName,                   
+                    CourseId = model.CourseId,                    
+                    
+                    
+                    
+                    
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);
 
                 // AddHAQ Roles when registering
                 var userStore = new UserStore<ApplicationUser>(db);
                 var userManager = new UserManager<ApplicationUser>(userStore);
-                var u1 = userManager.FindByName(model.Email);
+                var u1 = userManager.FindByName(model.Email);                
                 if(model.Teacher)
                     userManager.AddToRole(u1.Id, "Teacher");
                 else
@@ -182,7 +187,7 @@ namespace LSM.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Edit", "Courses", new {id = model.CourseId} );
                 }
                 AddErrors(result);
             }
