@@ -93,7 +93,7 @@ namespace LSM.Models
         [Required]
         public bool Teacher { get; set; }
 
-        public int CourseId { get; set; }
+        public int? CourseId { get; set; }
     }
 
     public class ResetPasswordViewModel

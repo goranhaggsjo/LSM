@@ -189,52 +189,52 @@ namespace LSM.Migrations
             //Skippat från alla rader u7.CourseId = 5;
 
 
-            //var JavaDude = new ApplicationUser
-            //{
-            //    UserName = "java@lsm.se",
-            //    Email = "java@lsm.se",
-            //    FirstName = "Java",
-            //    LastName = "Dude",
-            //    CourseId = CourseC.Id
-            //};
-            //userManager.Create(JavaDude, "Lsm123!");
-            //var u8 = userManager.FindByName("java@lsm.se");
+            var JavaDude = new ApplicationUser
+            {
+                UserName = "java@lsm.se",
+                Email = "java@lsm.se",
+                FirstName = "Java",
+                LastName = "Dude",
+                CourseId = CourseC.Id
+            };
+            userManager.Create(JavaDude, "Lsm123!");
+            var u8 = userManager.FindByName("java@lsm.se");
 
-            //userManager.AddToRoles(u8.Id, "Student");
+            userManager.AddToRoles(u8.Id, "Student");
 
-            //var Teacher = new ApplicationUser
-            //{
-            //    UserName = "larare@lsm.se",
-            //    Email = "larare@lsm.se",
-            //    FirstName = "Lärare",
-            //    LastName = "Lärare",
-            //    CourseId = null
-            //};
-            //userManager.Create(Teacher, "Lsm123!");
-            //var u9 = userManager.FindByName("larare@lsm.se");
-            //userManager.AddToRoles(u9.Id, "Teacher");
+            var Teacher = new ApplicationUser
+            {
+                UserName = "larare@lsm.se",
+                Email = "larare@lsm.se",
+                FirstName = "Lärare",               
+                LastName = "Lärare",
+                CourseId = null
+            };
+            userManager.Create(Teacher, "Lsm123!");
+            var u9 = userManager.FindByName("larare@lsm.se");
+            userManager.AddToRoles(u9.Id, "Teacher");
 
-            //var PythonDude = new ApplicationUser
-            //{
-            //    UserName = "python@lsm.se",
-            //    Email = "python@lsm.se",
-            //    FirstName = "Python",
-            //    LastName = "Dude",
-            //    CourseId = CoursePython.Id
-            //};
-            //userManager.Create(JavaDude, "Lsm123!");
-            //var u10 = userManager.FindByName("python@lsm.se");
+            var PythonDude = new ApplicationUser
+            {
+                UserName = "python@lsm.se",
+                Email = "python@lsm.se",
+                FirstName = "Python",
+                LastName = "Dude",
+                CourseId = CoursePython.Id
+            };
+            userManager.Create(JavaDude, "Lsm123!");
+            var u10 = userManager.FindByName("python@lsm.se");
 
-            //var CDude = new ApplicationUser
-            //{
-            //    UserName = "cdude@lsm.se",
-            //    Email = "cdude@lsm.se",
-            //    FirstName = "C#",
-            //    LastName = "Dude",
-            //    CourseId = CourseC.Id
-            //};
-            //userManager.Create(CDude, "Lsm123!");
-            //var u11 = userManager.FindByName("cdude@lsm.se");
+            var CDude = new ApplicationUser
+            {
+                UserName = "cdude@lsm.se",
+                Email = "cdude@lsm.se",
+                FirstName = "C#",
+                LastName = "Dude",
+                CourseId = CourseC.Id
+            };
+            userManager.Create(CDude, "Lsm123!");
+            var u11 = userManager.FindByName("cdude@lsm.se");
 
             var modules = new List<Module>
 
