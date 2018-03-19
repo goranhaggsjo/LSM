@@ -111,6 +111,12 @@ namespace LSM.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Course course = db.Courses.Find(id);
+            foreach(var user in course.Users)
+            {
+                user.CourseId = null;
+
+            }
+            
             db.Courses.Remove(course);
             db.SaveChanges();
             return RedirectToAction("Index");
