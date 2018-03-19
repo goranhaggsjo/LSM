@@ -9,6 +9,7 @@ namespace LSM.Models
     public class Course
     {
         public int Id { get; set; }
+        public int Place { get; set; }              // This is the place, 0 means no place.
         public string Name { get; set; }
 
         [DataType(DataType.MultilineText)]

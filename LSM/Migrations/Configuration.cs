@@ -288,15 +288,15 @@ namespace LSM.Migrations
             var act = new List<Activity>
             {
                 new Activity { Name = "Act20", Description = "Try whiskey",
-                    StartDate = DateTime.Now, StopDate = DateTime.Now, ModuleId = ActivityMany.Id },
+                    Day = DateTime.Parse("2010-09-01"), Pass = Epass.FMEM, ModuleId = 1 },
                 new Activity { Name = "Act21", Description = "Go home",
-                    StartDate = DateTime.Parse("2010-09-01"), StopDate = DateTime.Parse("2010-09-01"), ModuleId = ActivityMany.Id },
+                    Day = DateTime.Parse("2010-09-01"), Pass = Epass.FMEM, ModuleId = 2 },
                 new Activity { Name = "Act22", Description = "Drink beer",
-                    StartDate = DateTime.Parse("2010-09-01"), StopDate = DateTime.Parse("2010-09-01"), ModuleId = ActivityMany.Id },
+                    Day = DateTime.Parse("2010-09-01"), Pass = Epass.FMEM, ModuleId = 3 },
                 new Activity { Name = "Act23", Description = "Reading",
-                    StartDate = DateTime.Parse("2010-09-01"), StopDate = DateTime.Parse("2010-09-01"), ModuleId = ActivityMany.Id },
+                    Day = DateTime.Parse("2010-09-01"), Pass = Epass.FMEM, ModuleId = 3 },
                 new Activity { Name = "Act24", Description = "Sleep",
-                    StartDate = DateTime.Parse("2010-09-01"), StopDate = DateTime.Parse("2010-09-01"), ModuleId = ActivityMany.Id }
+                    Day = DateTime.Parse("2010-09-01"), Pass = Epass.FMEM, ModuleId = 3 }
 
 
             };
