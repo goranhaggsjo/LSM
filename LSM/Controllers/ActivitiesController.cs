@@ -10,6 +10,7 @@ using LSM.Models;
 
 namespace LSM.Controllers
 {
+    [Authorize]
     public class ActivitiesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -37,6 +38,7 @@ namespace LSM.Controllers
         }
 
         // GET: Activities/Create
+        [Authorize(Roles = "Teacher")]
         public ActionResult Create()
         {
             ViewBag.ModuleId = new SelectList(db.Modules, "Id", "Name");
@@ -62,6 +64,7 @@ namespace LSM.Controllers
         }
 
         // GET: Activities/Edit/5
+        [Authorize(Roles = "Teacher")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -95,6 +98,7 @@ namespace LSM.Controllers
         }
 
         // GET: Activities/Delete/5
+        [Authorize(Roles = "Teacher")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
