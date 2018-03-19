@@ -57,17 +57,17 @@
         </dt>
 
         <dd>
-            @if (model => model.Pass.FM == true)
+            @if (Model.Pass == LSM.Models.Epass.FM)
             {
-                @Html.DisplayFor("Morning")
+               <p>Morning</p>
             }
-            @if (model => model.Pass == "EM")
+            @if (Model.Pass == LSM.Models.Epass.EM)
             {
-                @Html.DisplayFor("Afternoon")
+               <p>Afternoon</p>
             }
-            @if (Model => Model.Pass == "FMEM")
+            @if (Model.Pass == LSM.Models.Epass.FMEM)
             {
-                @Html.DisplayFor("Fullday")
+               <p>Full day</p>
             }
         </dd>
 
