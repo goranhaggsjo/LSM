@@ -39,6 +39,7 @@ namespace LSM.Controllers
         // GET: Activities/Create
         public ActionResult Create(int ModuleId)
         {
+            ViewBag.Module = db.Modules.Where(m => m.Id == ModuleId).First();
             ViewBag.ModuleForActivity = ModuleId;
             return View();
         }

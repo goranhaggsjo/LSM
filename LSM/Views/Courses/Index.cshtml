@@ -4,10 +4,16 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Course</h2>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">Home</li>
+    </ol>
+</nav>
+
+<h1>Courses</h1>
 
 <p>
-    @Html.ActionLink("Create New", "Create", new { id = ""}, new { @class = "btn btn-success" })
+    @Html.ActionLink("Create New", "Create", new { id = "" }, new { @class = "btn btn-success" })
 </p>
 <table class="table">
     <tr>
@@ -16,19 +22,20 @@
         <th>End</th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.ActionLink(item.Name, "Edit", new { id = item.Id }, new { @class = "btn  btn-info" })
-            
-        </td>        
-        <td>
-            @Html.DisplayFor(modelItem => item.StartDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StopDate)
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(item.Name, "Edit", new { id = item.Id }, new { @class = "btn  btn-info" })
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StopDate)
+            </td>
+        </tr>
+    }
 
 </table>

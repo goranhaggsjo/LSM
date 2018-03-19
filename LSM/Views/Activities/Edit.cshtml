@@ -4,15 +4,23 @@
 
 }
 
-<h2>Activity info @Model.Name</h2>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">@Html.ActionLink("Home: ", "Index", "Courses")</li>
+        <li class="breadcrumb-item">@Html.ActionLink("Course: " + Model.Module.Course.Name, "Edit", "Courses", new { id = Model.Module.CourseId }, new { @class = "breadcrum-text" })</li>
+        <li class="breadcrumb-item">@Html.ActionLink("Module: " + Model.Module.Name, "Edit", "Modules", new { id = Model.ModuleId }, new { @class = "breadcrum-text" })</li>
+        <li class="breadcrumb-item active" aria-current="page">Activity: @Model.Name</li>
+    </ol>
+</nav>
+
+<h1>Activity @Model.Name</h1>
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>Activity</h4>
+    <div class="form-horizontal">       
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)

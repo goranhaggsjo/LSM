@@ -3,8 +3,17 @@
 @{
     ViewBag.Title = "Delete";
 }
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">@Html.ActionLink("Home ", "Index", "Courses")</li>
+        <li class="breadcrumb-item">@Html.ActionLink("Course: " + Model.Module.Course.Name, "Edit", "Courses", new { id = Model.Module.CourseId }, new { @class = "breadcrum-text" })</li>
+        <li class="breadcrumb-item">@Html.ActionLink("Module: " + Model.Module.Name, "Edit", "Modules", new { id = Model.ModuleId }, new { @class = "breadcrum-text" })</li>
+        <li class="breadcrumb-item">@Html.ActionLink("Activity: " + Model.Name, "Edit", new { id = Model.Id })</li>
+        <li class="breadcrumb-item active" aria-current="page">@ViewBag.Title</li>
+    </ol>
+</nav>
 
-<h2>Delete</h2>
+<h2>Delete Activity: @Model.Name</h2>
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
@@ -53,14 +62,15 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
-    <div class="form-actions no-color">
-        <input type="submit" value="Delete" class="btn btn-danger" /> 
-        @Html.ActionLink("Cancel", "Edit", new { id = Model.Id }, new { @class = "btn btn-info" })
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" />
+            @Html.ActionLink("Cancel", "Edit", new { id = Model.Id }, new { @class = "btn btn-info" })
 
 
-    </div>
+        </div>
     }
 </div>

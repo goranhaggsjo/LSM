@@ -1,23 +1,35 @@
 ﻿@model LSM.Models.Activity
 
+@using LSM.Models
+
+
+
 @{
     ViewBag.Title = "Create";
-    ViewBag.Title = "Edit";
+    string moduleName = @ViewBag.Module.Name;
+    int moduleId = @ViewBag.Module.Id;
 
-
-
+    Module module = @ViewBag.Module;
 }
 
-<h2>Create</h2>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">@Html.ActionLink("Home ", "Index", "Courses")</li>
+        <li class="breadcrumb-item">@Html.ActionLink("Course: " + module.Course.Name, "Edit", "Courses", new { id = module.CourseId }, new { @class = "breadcrum-text" })</li>
+        <li class="breadcrumb-item">@Html.ActionLink("Module: " + module.Name, "Edit", "Modules", new { id = moduleId }, new { @class = "breadcrum-text" })</li>
+        <li class="breadcrumb-item active" aria-current="page">@ViewBag.Title activity </li>
+    </ol>
+</nav>
 
-@ViewBag.Name
+<h1>Create Activity</h1>
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     @Html.HiddenFor(model => model.ModuleId)
     <div class="form-horizontal">
-        <h4>Activity</h4>
+        
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -54,7 +66,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-success" />                
+                <input type="submit" value="Create" class="btn btn-success" />
                 @Html.ActionLink("Cancel", "Edit", "Modules", new { id = ViewBag.ModuleForActivity }, new { @class = "btn btn-info" })
             </div>
         </div>
