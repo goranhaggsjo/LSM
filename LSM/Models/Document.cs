@@ -8,6 +8,7 @@ namespace LSM.Models
     public class Document
     {
         public int Id { get; set; }
+        public int Place { get; set; }              // Place in the list, 0 means no place yet
         public string Description { get; set; }
         public DateTime Timestamp { get; set; }
         public String Filepath { get; set; }

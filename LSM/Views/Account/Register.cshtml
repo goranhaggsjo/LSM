@@ -1,6 +1,7 @@
 ﻿@model LSM.Models.RegisterViewModel
 @{
     ViewBag.Title = "Register";
+    var courses = ViewBag.Courses;
 }
 
 <h2>@ViewBag.Title.</h2>
@@ -49,6 +50,16 @@
             @Html.CheckBoxFor(m => m.Teacher, new { @class = "form-control" })
         </div>
     </div>
+    @*@<div class="form-group">
+        @Html.LabelFor(x => courses, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <select>
+                @foreach (var c in courses) {
+                <option value="@c.value">@c.text</option>
+                }
+            </select>
+        </div>
+    </div>*@
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" class="btn btn-default" value="Register" />

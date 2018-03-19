@@ -9,6 +9,7 @@ namespace LSM.Models
     public class Module
     {
         public int Id { get; set; }
+        public int Place { get; set; }              // Place int lists, 
         public string Name { get; set; }
 
         [DataType(DataType.MultilineText)]
