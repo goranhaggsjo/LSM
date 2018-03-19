@@ -5,6 +5,7 @@
 
 
 }
+@* Changed *@
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
@@ -26,7 +27,7 @@
 
 
 
-                <div class="form-horizontal">                    
+                <div class="form-horizontal">
                     <hr />
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     @Html.HiddenFor(model => model.Id)
@@ -122,11 +123,11 @@
 
                         @foreach (var item in Model.Users)
                         {
-                        <tr>
-                            @*<td>@Html.ActionLink(@item.FullName, "Edit", "Account", new { id = item.Id }, new { @class = "btn  btn-info" })</td>*@
-                            <td>@Html.ActionLink(@item.FullName, "Index", "Manage", new { id = item.Id }, new { @class = "btn  btn-info" })</td>
-                            <td>@item.Email</td>
-                        </tr>
+                            <tr>
+                                @*<td>@Html.ActionLink(@item.FullName, "Edit", "Account", new { id = item.Id }, new { @class = "btn  btn-info" })</td>*@
+                                <td>@Html.ActionLink(@item.FullName, "Index", "Manage", new { id = item.Id }, new { @class = "btn  btn-info" })</td>
+                                <td>@item.Email</td>
+                            </tr>
                         }
                     </table>
                 </div>

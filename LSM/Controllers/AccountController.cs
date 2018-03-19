@@ -23,6 +23,7 @@ namespace LSM.Controllers
         //  Added
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        //Changed
         public AccountController()
         {
         }

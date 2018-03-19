@@ -62,9 +62,9 @@ namespace LSM.Migrations
                     StopDate = date
                 });
             }
-        
 
 
+            //Changed
 
             courses.ForEach(s => context.Courses.AddOrUpdate(p => p.Name, s));
             context.SaveChanges();
