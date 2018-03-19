@@ -37,9 +37,12 @@ namespace LSM.Controllers
         }
 
         // GET: Modules/Create
-        public ActionResult Create()
+        public ActionResult Create(int CourseId)
         {
-            ViewBag.CourseId = new SelectList(db.Courses, "Id", "Name");
+            ViewBag.CourseForModule = CourseId;
+
+            ViewBag.Course = db.Courses.Where(c => c.Id == CourseId).First();
+
             return View();
         }
 
@@ -53,8 +56,9 @@ namespace LSM.Controllers
             if (ModelState.IsValid)
             {
                 db.Modules.Add(module);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                db.SaveChanges();                    
+
+                return RedirectToAction("Edit", "Courses", new {id = module.CourseId });
             }
 
             ViewBag.CourseId = new SelectList(db.Courses, "Id", "Name", module.CourseId);
@@ -88,7 +92,7 @@ namespace LSM.Controllers
             {
                 db.Entry(module).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Edit", "Courses", new { id = module.CourseId });
             }
             ViewBag.CourseId = new SelectList(db.Courses, "Id", "Name", module.CourseId);
             return View(module);
@@ -117,7 +121,8 @@ namespace LSM.Controllers
             Module module = db.Modules.Find(id);
             db.Modules.Remove(module);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Edit", "Courses", new { id = module.CourseId });
+
         }
 
         protected override void Dispose(bool disposing)

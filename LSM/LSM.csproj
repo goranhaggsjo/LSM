@@ -199,9 +199,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201803121354566_Init.cs" />
-    <Compile Include="Migrations\201803121354566_Init.Designer.cs">
-      <DependentUpon>201803121354566_Init.cs</DependentUpon>
+    <Compile Include="Migrations\201803151320508_Updates the Seed.cs" />
+    <Compile Include="Migrations\201803151320508_Updates the Seed.Designer.cs">
+      <DependentUpon>201803151320508_Updates the Seed.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -292,7 +292,6 @@
     <Content Include="Views\Documents\Details.cshtml" />
     <Content Include="Views\Documents\Edit.cshtml" />
     <Content Include="Views\Documents\Index.cshtml" />
-    <Content Include="Views\Courses\ViewPage1.cshtml" />
     <Content Include="Views\Modules\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -313,8 +312,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201803121354566_Init.resx">
-      <DependentUpon>201803121354566_Init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201803151320508_Updates the Seed.resx">
+      <DependentUpon>201803151320508_Updates the Seed.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
