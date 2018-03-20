@@ -35,19 +35,30 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.StartDate)
+            @Html.DisplayNameFor(model => model.Day)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.StartDate)
+            @Html.DisplayFor(model => model.Day)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.StopDate)
+            @Html.DisplayNameFor(model => model.Pass)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.StopDate)
+            @if (model => model.Pass == "FM")
+            {
+                @Html.DisplayFor("Morning")
+            }
+            @if (model => model.Pass == "EM")
+            {
+                @Html.DisplayFor("Afternoon")
+            }
+            @if (Model => Model.Pass == "FMEM")
+            {
+                @Html.DisplayFor("Fullday")
+            }
         </dd>
 
     </dl>

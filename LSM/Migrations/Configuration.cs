@@ -62,9 +62,9 @@ namespace LSM.Migrations
                     StopDate = date
                 });
             }
-        
 
 
+            //Changed
 
             courses.ForEach(s => context.Courses.AddOrUpdate(p => p.Name, s));
             context.SaveChanges();
@@ -202,17 +202,17 @@ namespace LSM.Migrations
 
             //userManager.AddToRoles(u8.Id, "Student");
 
-            //var Teacher = new ApplicationUser
-            //{
-            //    UserName = "larare@lsm.se",
-            //    Email = "larare@lsm.se",
-            //    FirstName = "Lärare",
-            //    LastName = "Lärare",
-            //    CourseId = null
-            //};
-            //userManager.Create(Teacher, "Lsm123!");
-            //var u9 = userManager.FindByName("larare@lsm.se");
-            //userManager.AddToRoles(u9.Id, "Teacher");
+            var Teacher = new ApplicationUser
+            {
+                UserName = "larare@lsm.se",
+                Email = "larare@lsm.se",
+                FirstName = "Lärare",               
+                LastName = "Lärare",
+                CourseId = null
+            };
+            userManager.Create(Teacher, "Lsm123!");
+            var u9 = userManager.FindByName("larare@lsm.se");
+            userManager.AddToRoles(u9.Id, "Teacher");
 
             //var PythonDude = new ApplicationUser
             //{
@@ -288,15 +288,15 @@ namespace LSM.Migrations
             var act = new List<Activity>
             {
                 new Activity { Name = "Act20", Description = "Try whiskey",
-                    StartDate = DateTime.Now, StopDate = DateTime.Now, ModuleId = ActivityMany.Id },
+                    Day = DateTime.Parse("2010-09-01"), Pass = Epass.FMEM, ModuleId = 1 },
                 new Activity { Name = "Act21", Description = "Go home",
-                    StartDate = DateTime.Parse("2010-09-01"), StopDate = DateTime.Parse("2010-09-01"), ModuleId = ActivityMany.Id },
+                    Day = DateTime.Parse("2010-09-01"), Pass = Epass.FMEM, ModuleId = 2 },
                 new Activity { Name = "Act22", Description = "Drink beer",
-                    StartDate = DateTime.Parse("2010-09-01"), StopDate = DateTime.Parse("2010-09-01"), ModuleId = ActivityMany.Id },
+                    Day = DateTime.Parse("2010-09-01"), Pass = Epass.FMEM, ModuleId = 3 },
                 new Activity { Name = "Act23", Description = "Reading",
-                    StartDate = DateTime.Parse("2010-09-01"), StopDate = DateTime.Parse("2010-09-01"), ModuleId = ActivityMany.Id },
+                    Day = DateTime.Parse("2010-09-01"), Pass = Epass.FMEM, ModuleId = 3 },
                 new Activity { Name = "Act24", Description = "Sleep",
-                    StartDate = DateTime.Parse("2010-09-01"), StopDate = DateTime.Parse("2010-09-01"), ModuleId = ActivityMany.Id }
+                    Day = DateTime.Parse("2010-09-01"), Pass = Epass.FMEM, ModuleId = 3 }
 
 
             };
@@ -309,8 +309,8 @@ namespace LSM.Migrations
                 {
                     Name = "Module" + index,
                     Description = "Qwerty 123",
-                    StartDate = date,
-                    StopDate = date,
+                    Day = date,
+                    Pass = Epass.FMEM,
                     ModuleId = ActivityMany.Id
 
                 });

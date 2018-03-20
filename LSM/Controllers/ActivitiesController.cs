@@ -10,6 +10,7 @@ using LSM.Models;
 
 namespace LSM.Controllers
 {
+    [Authorize]
     public class ActivitiesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -37,6 +38,7 @@ namespace LSM.Controllers
         }
 
         // GET: Activities/Create
+        [Authorize(Roles = "Teacher")]
         public ActionResult Create(int ModuleId)
         {
             ViewBag.Module = db.Modules.Where(m => m.Id == ModuleId).First();
@@ -49,7 +51,7 @@ namespace LSM.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,StartDate,StopDate,ModuleId")] Activity activity)
+        public ActionResult Create([Bind(Include = "Id,Name,Description,Day,Pass,ModuleId")] Activity activity)
         {
             if (ModelState.IsValid)
             {
@@ -63,6 +65,7 @@ namespace LSM.Controllers
         }
 
         // GET: Activities/Edit/5
+        [Authorize(Roles = "Teacher")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -83,7 +86,7 @@ namespace LSM.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,StartDate,StopDate,ModuleId")] Activity activity)
+        public ActionResult Edit([Bind(Include = "Id,Name,Description,Day,Pass,ModuleId")] Activity activity)
         {
             if (ModelState.IsValid)
             {
@@ -96,6 +99,7 @@ namespace LSM.Controllers
         }
 
         // GET: Activities/Delete/5
+        [Authorize(Roles = "Teacher")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

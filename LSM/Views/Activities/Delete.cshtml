@@ -45,19 +45,30 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.StartDate)
+            @Html.DisplayNameFor(model => model.Day)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.StartDate)
+            @Html.DisplayFor(model => model.Day)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.StopDate)
+            @Html.DisplayNameFor(model => model.Pass)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.StopDate)
+            @if (Model.Pass == LSM.Models.Epass.FM)
+            {
+               <p>Morning</p>
+            }
+            @if (Model.Pass == LSM.Models.Epass.EM)
+            {
+               <p>Afternoon</p>
+            }
+            @if (Model.Pass == LSM.Models.Epass.FMEM)
+            {
+               <p>Full day</p>
+            }
         </dd>
 
     </dl>
