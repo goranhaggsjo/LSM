@@ -91,6 +91,7 @@ namespace LSM.Controllers
             return View(course);
         }
 
+        // AddedHAQ
         // GET: Courses/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -103,6 +104,15 @@ namespace LSM.Controllers
             {
                 return HttpNotFound();
             }
+
+            // Make a list of included modules
+            List<string> mod2 = new List<string>();
+            foreach (var mod in course.Modules)
+            {
+                mod2.Add(mod.Name);
+            }
+            ViewBag.modlist = mod2;
+
             return View(course);
         }
 
@@ -112,6 +122,41 @@ namespace LSM.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Course course = db.Courses.Find(id);
+
+            
+            // Del modules and activities connected to this course... Done automatically if
+            // foreign keys have constraints, dvs required.......
+            //  But CourseId in student is declared with ?, no constraint, and must be set to null
+
+            /*  Onödigt
+            List<Module> modulelist = new List<Module>();
+            foreach (var mod in course.Modules)
+            {
+                modulelist.Add(mod);
+            }
+            foreach (var m1 in modulelist)
+            {
+                // List all activities in module m1, and then remove them
+                List<Activity> actlist = new List<Activity>();
+                foreach (var act in m1.Activitys)
+                {
+                    actlist.Add(act);
+                }
+                foreach (var a1 in actlist)
+                {
+                    db.Activitys.Remove(a1);
+                }
+
+                db.Modules.Remove(m1);
+            }
+            */
+
+            foreach (var stud in course.Users)
+            {
+                stud.CourseId = null;
+            }
+
+
             db.Courses.Remove(course);
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -122,18 +167,35 @@ namespace LSM.Controllers
         public ActionResult ShowUsers()
         {
             List<userview> users = new List<userview>();
-            //var userStore = new UserStore<ApplicationUser>(db);
-            //var userManager = new UserManager<ApplicationUser>(userStore);
-            // var u1 = userManager.FindByName(model.Email);
 
-            foreach (var user in db.Users)
+            // Man kommer åt User tabellen, och Role tabellen, men det finns en korskopplings-
+            // tabell UserRoles, som innehåller två hashade nycklar, behövs, hur kommer man
+            // åt den ?
+
+            var ur = db.Set<IdentityUserRole>();   // ?  Kommer ej åt ur.UserId resp .RoleId
+
+            var user1 = db.Users.Include(x => x.Roles);
+
+            
+
+            //foreach (var user in db.Users)
+            foreach (var user in user1)
             {
                 var u = new userview();
                 u.FirstName = user.FirstName;
                 u.LastName = user.LastName;
-                u.email = user.Email;
-                //string rolename = userManager.GetRoles(user.Id).FirstOrDefault();
+                u.email =  user.Email;
+
                 u.Role = "N/A";
+                //u.Role = user.Roles.ToString();
+                //foreach (var r in user.Roles)
+
+                /*
+                var ur2 = from ucross in ur
+                          where user.Id = ucross.UserId
+                          select ucross;
+                */
+
                 users.Add(u);
             }
 

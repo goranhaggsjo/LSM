@@ -19,6 +19,8 @@
                 </button>
                 @Html.ActionLink("Lexicon LMS", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
+
+
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Course", "Index", "Courses")</li>
@@ -30,6 +32,10 @@
             </div>
         </div>
     </div>
+    @if (User.IsInRole("Student"))
+    {<h5> &nbsp; &nbsp; Logged in as a Student</h5>}
+    @if (User.IsInRole("Teacher"))
+    {<h5>  &nbsp; &nbsp; Logged in as a Teacher</h5>}
     <div class="container body-content">
         @RenderBody()
         <hr />

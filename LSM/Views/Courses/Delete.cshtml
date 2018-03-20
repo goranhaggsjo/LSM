@@ -45,7 +45,18 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    <div>
+        <h5>Contains the following Modules, which will also be deleted, together with their activities.</h5>
+
+        @foreach (string item in ViewBag.modlist)
+        {
+            <h5>@item</h5>
+        }
+    </div>
+    <br>
+
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">

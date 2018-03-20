@@ -18,6 +18,9 @@
         <th>
             @Html.DisplayNameFor(model => model.email)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Role)
+        </th>
         <th></th>
     </tr>
 
@@ -32,7 +35,10 @@
         <td>
             @Html.DisplayFor(modelItem => item.email)
         </td>
-        
+        <td>
+            @Html.DisplayFor(modelItem => item.Role)
+        </td>
+
     </tr>
 }
 

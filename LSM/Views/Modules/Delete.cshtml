@@ -53,7 +53,18 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    <div>
+        <h5>Contains the following Activities, which will also be deleted.</h5>
+
+        @foreach (string item in ViewBag.actlist)
+        {
+            <h5>@item</h5>
+        }
+    </div>
+    <br>
+
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
