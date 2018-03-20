@@ -54,7 +54,7 @@ namespace LSM
             manager.PasswordValidator = new PasswordValidator
             {
                 RequiredLength = 6,
-                RequireNonLetterOrDigit = false,
+                RequireNonLetterOrDigit = true,  // Kolla om passord funkar nu
                 RequireDigit = true,
                 RequireLowercase = true,
                 RequireUppercase = true,

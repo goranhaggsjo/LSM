@@ -163,10 +163,6 @@ namespace LSM.Controllers
                     FirstName = model.FirstName,                   
                     LastName = model.LastName,                   
                     CourseId = model.CourseId,                    
-                    
-                    
-                    
-                    
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);
 
@@ -179,28 +175,31 @@ namespace LSM.Controllers
                 else
                     userManager.AddToRole(u1.Id, "Student");
 
-                if (result.Succeeded)
-                {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
-                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                    if(model.Teacher)
-                    {return RedirectToAction("Index", "Courses");
+                //if (result.Succeeded) {
+                //    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
-                    }
+                //    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
+                //    // Send an email with this link
+                //    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                //    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                //    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                //    if (model.Teacher) {
+                //        return RedirectToAction("Index", "Courses");
+
+                //    }
 
 
-                    return RedirectToAction("Edit", "Courses", new {id = model.CourseId} );
-                }
-                AddErrors(result);
+                //    return RedirectToAction("Edit", "Courses", new { id = model.CourseId });
+                //}
+                //AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            //return View(model);
+            if (model.Teacher)
+                return RedirectToAction("Index", "Courses");
+            else
+                return RedirectToAction("Index", "Student", new { id = model.CourseId });
         }
 
         //
