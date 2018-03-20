@@ -21,7 +21,7 @@ namespace LSM.Controllers
         {
             string usernamne = User.Identity.GetUserId();
             var user = db.Users.Find(usernamne);
-
+            
             Course course = user.Course;
           
             return View(course);
