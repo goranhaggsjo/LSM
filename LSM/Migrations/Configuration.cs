@@ -309,8 +309,8 @@ namespace LSM.Migrations
                 {
                     Name = "Module" + index,
                     Description = "Qwerty 123",
-                    StartDate = date,
-                    StopDate = date,
+                    Day = date,
+                    Pass = Epass.FMEM,
                     ModuleId = ActivityMany.Id
 
                 });
