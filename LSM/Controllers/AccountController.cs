@@ -78,14 +78,18 @@ namespace LSM.Controllers
             {
                 return View(model);
             }
-
+           
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+
             switch (result)
             {
-                case SignInStatus.Success:
-                    return RedirectToLocal("/Courses/Index"); // This is teacher logged in page.
+              
+
+                case SignInStatus.Success:              
+                   
+                    return RedirectToAction("Index", "Courses");// This is teacher logged in page.
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -199,7 +203,7 @@ namespace LSM.Controllers
             if (model.Teacher)
                 return RedirectToAction("Index", "Courses");
             else
-                return RedirectToAction("Index", "Student", new { id = model.CourseId });
+                return RedirectToAction("Edit", "Courses", new { id = model.CourseId });
         }
 
         //

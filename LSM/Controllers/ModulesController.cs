@@ -10,6 +10,7 @@ using LSM.Models;
 
 namespace LSM.Controllers
 {
+    [Authorize(Roles = "Teacher")]
     public class ModulesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
