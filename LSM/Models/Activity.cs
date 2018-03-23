@@ -16,6 +16,7 @@ namespace LSM.Models
 
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime Day { get; set; }
         public Epass Pass { get; set; }
 

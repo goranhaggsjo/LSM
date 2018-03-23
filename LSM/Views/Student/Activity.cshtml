@@ -1,0 +1,41 @@
+﻿@model LSM.Models.Activity
+
+@{
+
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">@Html.ActionLink("Home: ", "Index", "Student")</li>        
+        <li class="breadcrumb-item">@Html.ActionLink("Module: " + Model.Module.Name, "Module", "Student", new { id = Model.ModuleId }, new { @class = "breadcrum-text" })</li>
+        <li class="breadcrumb-item active" aria-current="page">Activity: @Model.Name</li>
+    </ol>
+</nav>
+
+<h1>Activity: @Model.Name</h1>
+<div class="container">
+
+
+    <h2>Activity Info</h2>
+  
+        
+        @if (Model.Pass == LSM.Models.Epass.FM)
+        {
+    <p><strong>Date: @Model.Day.Date Morning</strong></p>
+    }
+        @if (Model.Pass == LSM.Models.Epass.EM)
+        {
+    <p><strong>Date: @Model.Day.Date Afternoon</strong></p>
+        }
+        @if (Model.Pass == LSM.Models.Epass.FMEM)
+        {
+    <p><strong> @Model.Day Full day</strong></p>
+        }
+
+
+
+
+       
+        <p>@Model.Description</p>
+    </div>
+   

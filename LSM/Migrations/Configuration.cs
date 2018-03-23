@@ -62,9 +62,9 @@ namespace LSM.Migrations
                     StopDate = date
                 });
             }
-        
 
 
+            //Changed
 
             courses.ForEach(s => context.Courses.AddOrUpdate(p => p.Name, s));
             context.SaveChanges();
@@ -202,17 +202,17 @@ namespace LSM.Migrations
 
             //userManager.AddToRoles(u8.Id, "Student");
 
-            //var Teacher = new ApplicationUser
-            //{
-            //    UserName = "larare@lsm.se",
-            //    Email = "larare@lsm.se",
-            //    FirstName = "Lärare",
-            //    LastName = "Lärare",
-            //    CourseId = null
-            //};
-            //userManager.Create(Teacher, "Lsm123!");
-            //var u9 = userManager.FindByName("larare@lsm.se");
-            //userManager.AddToRoles(u9.Id, "Teacher");
+            var Teacher = new ApplicationUser
+            {
+                UserName = "larare@lsm.se",
+                Email = "larare@lsm.se",
+                FirstName = "Lärare",               
+                LastName = "Lärare",
+                CourseId = null
+            };
+            userManager.Create(Teacher, "Lsm123!");
+            var u9 = userManager.FindByName("larare@lsm.se");
+            userManager.AddToRoles(u9.Id, "Teacher");
 
             //var PythonDude = new ApplicationUser
             //{
@@ -309,8 +309,8 @@ namespace LSM.Migrations
                 {
                     Name = "Module" + index,
                     Description = "Qwerty 123",
-                    StartDate = date,
-                    StopDate = date,
+                    Day = date,
+                    Pass = Epass.FMEM,
                     ModuleId = ActivityMany.Id
 
                 });
