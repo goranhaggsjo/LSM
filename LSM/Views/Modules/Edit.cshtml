@@ -87,8 +87,8 @@
                 <table class="table">
                     <tr>
                         <th>View/Edit</th>
-                        <th>Start</th>
-                        <th>End</th>
+                        <th>Day</th>
+                        <th>Pass</th>
                     </tr>
 
 
@@ -99,10 +99,21 @@
                                 @Html.ActionLink(item.Name, "Edit", "Activities", new { id = item.Id }, new { @class = "btn btn-info" })
                             </td>
                             <td>
-                                @item.StartDate
+                                @item.Day 
                             </td>
                             <td>
-                                @item.StopDate
+                                @if (item.Pass == LSM.Models.Epass.FM)
+    {
+                            <p>Morning</p>
+}
+                                @if (item.Pass == LSM.Models.Epass.EM)
+    {
+                            <p>Afternoon</p>
+}
+                                @if (item.Pass == LSM.Models.Epass.FMEM)
+    {
+                            <p>Full day</p>
+}
                             </td>
                         </tr>
                     }

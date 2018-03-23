@@ -2,6 +2,13 @@
     ViewBag.Title = "Home Page";
 }
 
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        @*<li class="breadcrumb-item">@Html.ActionLink("Home", "Index", "Home")</li>*@
+        <li class="breadcrumb-item active" aria-current="page">Home</li>
+    </ol>
+</nav>
+
 <div class="">
     <h1>Lexicon School Management</h1>
     <p class="lead">This program is written using ASP, c#, .net database.</p>
@@ -12,7 +19,7 @@
     <div class="col-md-4">
         <h2>Courses</h2>
         <p>
-           primary there is a course class, it contains information about the course.
+            primary there is a course class, it contains information about the course.
         </p>
         <p>&nbsp;</p>
     </div>
