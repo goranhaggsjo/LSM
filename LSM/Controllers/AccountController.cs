@@ -18,7 +18,7 @@ namespace LSM.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        private object userManager;
+        //private object userManager;
 
         //  Added
         private ApplicationDbContext db = new ApplicationDbContext();
