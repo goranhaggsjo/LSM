@@ -14,7 +14,9 @@ namespace LSM.Models
 
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime StartDate { get; set; }
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime StopDate { get; set; }
 
         public virtual Course Course { get; set; }

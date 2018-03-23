@@ -27,13 +27,13 @@
         <tr>
             <td>
                 @Html.ActionLink(item.Name, "Edit", new { id = item.Id }, new { @class = "btn  btn-info" })
-
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.StartDate)
+                @*@Html.DisplayFor(modelItem => item.StartDate)*@
+                @item.StartDate.ToShortDateString()
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.StopDate)
+                @item.StopDate.ToShortDateString()
             </td>
         </tr>
     }
