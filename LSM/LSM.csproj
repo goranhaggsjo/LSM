@@ -213,6 +213,18 @@
     <Compile Include="Migrations\201803120900334_MoreInUserView.Designer.cs">
       <DependentUpon>201803120900334_MoreInUserView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803211456547_userViewCourseId.cs" />
+    <Compile Include="Migrations\201803211456547_userViewCourseId.Designer.cs">
+      <DependentUpon>201803211456547_userViewCourseId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803230906460_commentUservDbSet.cs" />
+    <Compile Include="Migrations\201803230906460_commentUservDbSet.Designer.cs">
+      <DependentUpon>201803230906460_commentUservDbSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803230943570_CourseInUserView.cs" />
+    <Compile Include="Migrations\201803230943570_CourseInUserView.Designer.cs">
+      <DependentUpon>201803230943570_CourseInUserView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Activity.cs" />
@@ -336,6 +348,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803120900334_MoreInUserView.resx">
       <DependentUpon>201803120900334_MoreInUserView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803211456547_userViewCourseId.resx">
+      <DependentUpon>201803211456547_userViewCourseId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803230906460_commentUservDbSet.resx">
+      <DependentUpon>201803230906460_commentUservDbSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803230943570_CourseInUserView.resx">
+      <DependentUpon>201803230943570_CourseInUserView.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

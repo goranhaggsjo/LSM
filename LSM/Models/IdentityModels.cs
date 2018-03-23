@@ -55,7 +55,7 @@ namespace LSM.Models
         public DbSet<Activity> Activitys { get; set; }
         public DbSet<Document> Documents { get; set; }
 
-        public System.Data.Entity.DbSet<LSM.Models.userview> userviews { get; set; }
+        //public System.Data.Entity.DbSet<LSM.Models.userview> userviews { get; set; }
 
        // public System.Data.Entity.DbSet<LSM.Models.ApplicationUser> ApplicationUsers { get; set; }
     }

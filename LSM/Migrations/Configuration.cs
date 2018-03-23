@@ -32,7 +32,7 @@ namespace LSM.Migrations
             //    );
             //
 
-            // En massa komplicerad kod för att skapa nya användare och roller !!
+            // En massa komplicerad kod för att skapa nya användare och roller !! Måste göras i rätt ordning.
 
 
             var courses = new List<Course>
@@ -184,7 +184,7 @@ namespace LSM.Migrations
             var act = new List<Activity>
             {
                 new Activity { Name = "Act20", Description = "Try whiskey",
-                    StartDate = DateTime.Parse("2010-09-01"), StopDate = DateTime.Parse("2010-09-01"), ModuleId = 1 },
+                    StartDate = DateTime.Parse("2010-09-01"), StopDate = DateTime.Parse("2010-09-01"), ModuleId = 4 },
 
                 new Activity { Name = "Act21", Description = "Go home",
                     StartDate = DateTime.Parse("2010-09-01"), StopDate = DateTime.Parse("2010-09-01"), ModuleId = 2 },

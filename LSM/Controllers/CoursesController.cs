@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using LSM.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace LSM.Controllers
 {
@@ -168,34 +169,94 @@ namespace LSM.Controllers
         {
             List<userview> users = new List<userview>();
 
-            // Man kommer åt User tabellen, och Role tabellen, men det finns en korskopplings-
-            // tabell UserRoles, som innehåller två hashade nycklar, behövs, hur kommer man
-            // åt den ?
 
-            var ur = db.Set<IdentityUserRole>();   // ?  Kommer ej åt ur.UserId resp .RoleId
+            // var ur = db.Set<IdentityUserRole>();   // ?  Kommer ej åt ur.UserId resp .RoleId
 
-            var user1 = db.Users.Include(x => x.Roles);
+            // nav-props Roles, motsvarar korskopplingstabellen med hash för userId och roleId
+            //  AspNetUserRoles. hash db.Users.Id -> hash db.user.Roles.UserId -> db.user.Roles.RoleId ->
+            //  db.Roles.Name !!
 
-            
+            //  Problem med "already open data reader" nedan, när man loopar och läser ur flera db-tabeller
+            //  samtidigt... Gör darför .ToList på första db-accessen, där man läser ut till user1, då hämtas
+            //  all data där på en gång och operationen avslutas ---  annars blir det så att db.Users förblir
+            //  "öppen" och man hämtar data efterhand ? Då kan det bli krock internt sen när man öppnar
+            //  Courses tabellen och läser en kurs --- db.Users kan då fortfarande vara öppen ?
+            //
 
-            //foreach (var user in db.Users)
+            var user1 = db.Users.Include(x => x.Roles).ToList();
+
+
             foreach (var user in user1)
             {
                 var u = new userview();
                 u.FirstName = user.FirstName;
                 u.LastName = user.LastName;
                 u.email =  user.Email;
+               
+                u.CourseId = (user.CourseId == null) ? 0 : (int)user.CourseId;   // new 20180321
+                if (user.CourseId == null)
+                {
+                    u.CourseName = "N/A";
+                }
+                else
+                {
+                    Course course2 = db.Courses.Find(user.CourseId);
+                    u.CourseName = course2.Name;
+                }
+                   
 
-                u.Role = "N/A";
-                //u.Role = user.Roles.ToString();
-                //foreach (var r in user.Roles)
+                Console.WriteLine(u.FirstName);
+
+                var userManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                var roles = userManager.GetRoles(user.Id);
+                var joinedRoles = string.Join(", ", roles);
 
                 /*
-                var ur2 = from ucross in ur
-                          where user.Id = ucross.UserId
-                          select ucross;
+                
+                // Nedan funkar ej, blir en massa skumma fel, beror på att man låser db tabeller
+                // när man lopar igenom, se comments ovan !!!
+                 
+                string r2 = "";
+                string s1 = "";
+
+                foreach (var r in user.Roles)
+                {
+                    if (user.Id == r.UserId) r2 = r.RoleId;
+                }
+
+                foreach (var r1 in db.Roles)
+                {
+                    if (r1.Id == r2) s1 = r1.Name;
+                }
                 */
 
+
+                /*
+                var r2 = from t in user.Roles
+                         where t.UserId == user.Id
+                         select t;
+
+                string s1="";
+                foreach ( var r3 in r2)   // r2 blir en db-tabell med en rad
+                {
+                    s1 = r3.RoleId;
+                }
+
+                var s = from t in db.Roles   // s blir en db-tabell med en rad
+                        where t.Id == s1
+                        select t;
+
+                string s4 = "";
+                foreach (var r5 in s)
+                {
+                    s4 = r5.Name;
+                }
+                */
+
+                //u.Role = "N/A";
+
+                u.Role = joinedRoles;
+ 
                 users.Add(u);
             }
 
@@ -249,6 +310,43 @@ namespace LSM.Controllers
                 a1.Add(a);
 
             return PartialView(a1);
+        }
+
+        public void qtest()
+        {
+            var a1 = from t in db.Activitys
+                     where t.Description == "A"
+                     select t;
+            var m1 = from t in db.Modules
+                     where t.CourseId == 1 && t.Id > 2
+                     select t.Description;
+
+            // Nonsense, just check the join syntax....
+            var c1 = from c in db.Courses
+                     join m in db.Modules
+                     on c.Id equals m.Id
+                     select new { N1 = c.Name, N2 = m.Name };
+
+
+            //  c2.Modules är en nav-prop, en lista på moduler. Så en record
+            //  innehåller student name, kurs namn, och en lista på moduler !
+            var s1 = from s in db.Users
+                     join c2 in db.Courses
+                     on s.CourseId equals c2.Id
+                     select new { b1 = s.FullName, b2 = c2.Name,
+                     b3 = c2.Modules };
+
+            foreach(var x in s1)
+            {
+                foreach(var x1 in x.b3)
+                {
+                    // x1 är Module-ref ! x1.Name Module-name
+                }
+            }
+
+
+            
+
         }
 
 

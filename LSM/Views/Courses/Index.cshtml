@@ -6,16 +6,24 @@
 
 <h2>Course</h2>
 
+
 <p>
-    @Html.ActionLink("Create New", "Create", "Courses", new { @class = "btn  btn-primary" })
+    <span>
+        @Html.ActionLink("Create New", "Create", "Courses", new { @class = "btn  btn-primary" })
+    </span>
+    <span>
+        <button type="button" class = "btn  btn-primary" onclick="myFunction()">Modules</button>
+    </span>
 </p>
-<table class="table-striped table-bordered table-condensed">
+
+<br>
+<table class="table-striped table-bordered table-condensed" style="background-color:aliceblue">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(m => m.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.DisplayNameFor(d => d.Description)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.StartDate)
@@ -26,28 +34,70 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StopDate)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn  btn-primary" })
-            @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn  btn-primary" })
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn  btn-primary" }) 
-            @Html.ActionLink("Show More", "ShowCourseMod", "Courses", new { id = item.Id }, new { @class = "btn  btn-info" })
-            @*@Html.ActionLink("Show Students", "ShowCourseStud", "Courses", new { id = item.Id }, null)*@
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StopDate)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn  btn-primary" })
+                @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn  btn-primary" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn  btn-primary" })
+                @Html.ActionLink("Show More", "ShowCourseMod", "Courses", new { id = item.Id }, new { @class = "btn  btn-info" })
+                @*@Html.ActionLink("Show Students", "ShowCourseStud", "Courses", new { id = item.Id }, null)*@
+            </td>
+        </tr>
+        foreach (var mod in item.Modules)
+        {
+            <tr class="modules" style="background-color:antiquewhite">
+                <td>
+                    Module: @Html.DisplayFor(modelItem => mod.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => mod.Description)
+                </td>
+            </tr>
+            foreach (var a in mod.Activitys)
+            {
+                <tr class="modules" style="background-color:beige">
+                    <td>
+                        Activity: @Html.DisplayFor(modelItem => a.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => a.Description)
+                    </td>
+                </tr>
+            }
+
+
+        }
+    }
 
 </table>
+<br>
+
+
+<script>
+function myFunction() {
+    var elements = document.getElementsByClassName("modules");
+    var i;
+    for (i = 0; i < elements.length; i++) {
+        if (elements[i].style.visibility === 'collapse') {
+            elements[i].style.visibility = 'visible';
+        } else {
+            elements[i].style.visibility = 'collapse';
+        }    
+    } 
+    }
+
+</script>

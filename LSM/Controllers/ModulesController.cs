@@ -19,6 +19,10 @@ namespace LSM.Controllers
         {
             ViewBag.ModuleSortPar = sortOrder == "Mod" ? "Mod_desc" : "Mod";
             ViewBag.StartDateSortPar = sortOrder == "Date" ? "Date_desc" : "Date";
+
+            // Include, Course is a nav-prop, a ref to a Course....
+            // In the view, this can be referenced,    model.Course.Name
+
             var modules = db.Modules.Include(m => m.Course);
 
             switch (sortOrder)
@@ -59,6 +63,7 @@ namespace LSM.Controllers
         // GET: Modules/Create
         public ActionResult Create()
         {
+            // Skapa en drop-down list i vy för att välja kurs
             ViewBag.CourseId = new SelectList(db.Courses, "Id", "Name");
             return View();
         }

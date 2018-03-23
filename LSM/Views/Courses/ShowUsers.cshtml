@@ -7,7 +7,7 @@
 <h2>Registered Users</h2>
 
 
-<table class="table-striped table-bordered table-condensed">
+<table class="table-bordered table-condensed" style="background-color:aliceblue; border-spacing:120px">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.FirstName)
@@ -20,6 +20,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Role)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CourseName)
         </th>
         <th></th>
     </tr>
@@ -38,8 +41,13 @@
         <td>
             @Html.DisplayFor(modelItem => item.Role)
         </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CourseName)
+        </td>
 
     </tr>
+
+
 }
 
 </table>

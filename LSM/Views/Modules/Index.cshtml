@@ -10,9 +10,10 @@
     @Html.ActionLink("Create New", "Create", "Modules", new { @class = "btn  btn-primary" })
 </p>
 <div style= "overflow-y: scroll; height:400px">
-    <table class="table-striped table-bordered table-condensed">
+    <table class="table-striped table-bordered table-condensed" style="background-color:aliceblue">
         <tr>
             <th>
+                <! model.Course is a nav-prop, a ref to a Course >
                 Course @Html.DisplayNameFor(model => model.Course.Name)
             </th>
             <th>
