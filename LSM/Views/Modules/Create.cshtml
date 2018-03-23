@@ -11,7 +11,7 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item">@Html.ActionLink("Home ", "Index", "Courses")</li>
-        <li class="breadcrumb-item">@Html.ActionLink("Course: " + course.Name, "Edit", "Courses", new { id = course.Id }, new { @class = "breadcrum-text" })</li>
+        <li class="breadcrumb-item">@Html.ActionLink("Course: "+ @Course.Name, "Edit", "Courses", new { id = course.Id }, new { @class = "breadcrum-text" })</li>
         <li class="breadcrumb-item active" aria-current="page">@ViewBag.Title module</li>
     </ol>
 </nav>

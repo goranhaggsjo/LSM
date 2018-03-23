@@ -41,8 +41,9 @@ namespace LSM.Controllers
         public ActionResult Create(int CourseId)
         {
             ViewBag.CourseForModule = CourseId;
-
             ViewBag.Course = db.Courses.Where(c => c.Id == CourseId).First();
+            ViewBag.Stopdate = "";
+            ViewBag.startdate = "";
 
             return View();
         }
@@ -54,15 +55,29 @@ namespace LSM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Name,Description,StartDate,StopDate,CourseId")] Module module)
         {
-            if (ModelState.IsValid)
+            Course course = db.Courses.Where(predicate: c => c.Id == module.CourseId).First();
+
+            ViewBag.Stopdate = "";
+            ViewBag.startdate = "";
+            int result1 = DateTime.Compare(module.StartDate, course.StartDate);
+            int result2 = DateTime.Compare(module.StopDate, course.StopDate);
+
+            if (result1 <= 0)
             {
-                db.Modules.Add(module);
-                db.SaveChanges();                    
+                if (result2 >= 0)
+                {
+                    if (ModelState.IsValid)
+                    {
+                        db.Modules.Add(module);
+                        db.SaveChanges();
 
-                return RedirectToAction("Edit", "Courses", new {id = module.CourseId });
+                        return RedirectToAction("Edit", "Courses", new { id = module.CourseId });
+                    }
+
+                }
+                ViewBag.Stopdate = "Stop date is after the course's stop date.";
             }
-
-            ViewBag.CourseId = new SelectList(db.Courses, "Id", "Name", module.CourseId);
+            ViewBag.startdate = "Start date is before the course's start date.";
             return View(module);
         }
 
@@ -73,12 +88,22 @@ namespace LSM.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
+            ViewBag.Stopdate = "";
+            ViewBag.startdate = "";
+
             Module module = db.Modules.Find(id);
+            Course course = db.Courses.Where(predicate: c => c.Id == module.CourseId).First();
+
+            ViewBag.CourseName = "Course: " + course.Name;
+
             if (module == null)
             {
                 return HttpNotFound();
             }
+
             ViewBag.CourseId = new SelectList(db.Courses, "Id", "Name", module.CourseId);
+
             return View(module);
         }
 
@@ -89,13 +114,31 @@ namespace LSM.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Name,Description,StartDate,StopDate,CourseId")] Module module)
         {
-            if (ModelState.IsValid)
+            Course course = db.Courses.Where(predicate: c => c.Id == module.CourseId).First();
+            ViewBag.CourseName = "Course: " + course.Name;
+
+            ViewBag.Stopdate = "";
+            ViewBag.Startdate = "";
+
+            int result1 = DateTime.Compare(module.StartDate, course.StartDate);
+            int result2 = DateTime.Compare(module.StopDate, course.StopDate);
+
+            if (result1 <= 0)
             {
-                db.Entry(module).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Edit", "Courses", new { id = module.CourseId });
+                if (result2 >= 0)
+                {
+
+                    if (ModelState.IsValid)
+                    {
+                        db.Entry(module).State = EntityState.Modified;
+                        db.SaveChanges();
+                        return RedirectToAction("Edit", "Courses", new { id = module.CourseId });
+                    }
+                }
+                ViewBag.Stopdate = "Stop date is after the course's stop date.";
             }
-            ViewBag.CourseId = new SelectList(db.Courses, "Id", "Name", module.CourseId);
+            ViewBag.Startdate = "Start date is before the course's start date.";
+            
             return View(module);
         }
 
