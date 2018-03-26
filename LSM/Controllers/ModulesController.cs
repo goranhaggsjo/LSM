@@ -57,9 +57,11 @@ namespace LSM.Controllers
             if (ModelState.IsValid)
             {
                 db.Modules.Add(module);
-                db.SaveChanges();                    
+                db.SaveChanges();
+                string messagetowrite = "Module " + module.Name + " added!";
 
-                return RedirectToAction("Edit", "Courses", new {id = module.CourseId });
+
+                return RedirectToAction("Edit", "Courses", new {id = module.CourseId, message =  messagetowrite});
             }
 
             ViewBag.CourseId = new SelectList(db.Courses, "Id", "Name", module.CourseId);
@@ -67,8 +69,11 @@ namespace LSM.Controllers
         }
 
         // GET: Modules/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id, string message = "None")
         {
+            ViewBag.Message = message;
+
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -93,7 +98,8 @@ namespace LSM.Controllers
             {
                 db.Entry(module).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Edit", "Courses", new { id = module.CourseId });
+                string messagetowrite = "Module " + module.Name + " edited!";
+                return RedirectToAction("Edit", "Courses", new { id = module.CourseId, message = messagetowrite });
             }
             ViewBag.CourseId = new SelectList(db.Courses, "Id", "Name", module.CourseId);
             return View(module);
@@ -122,7 +128,8 @@ namespace LSM.Controllers
             Module module = db.Modules.Find(id);
             db.Modules.Remove(module);
             db.SaveChanges();
-            return RedirectToAction("Edit", "Courses", new { id = module.CourseId });
+            string messagetowrite = "Module " + module.Name + " deleted!";
+            return RedirectToAction("Edit", "Courses", new { id = module.CourseId, message = messagetowrite });
 
         }
 

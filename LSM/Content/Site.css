@@ -48,7 +48,25 @@ table, th, td {
 
 }
 
+#message2 {
+          width: 100%;
+         
+          
 
 
+}
+.green {
+    background-color: green;
+}
+
+.red {
+    background-color: red;
+}
+
+#message2 p {
+    font-size: 1em;
+    padding: 5px;
+    color: white;
+}
 
 

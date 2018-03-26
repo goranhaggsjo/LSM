@@ -17,8 +17,9 @@ namespace LSM.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Courses
-        public ActionResult Index()
+        public ActionResult Index(int? id, string message="None")
         {
+            ViewBag.Message = message;
             string usernamne = User.Identity.GetUserId();
             var user = db.Users.Find(usernamne);
             if (user.Course == null)
@@ -59,17 +60,20 @@ namespace LSM.Controllers
         {
             if (ModelState.IsValid)
             {
+              
                 db.Courses.Add(course);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                string messagetowrite = "Course " + course.Name + " added!";
+                return RedirectToAction("Index", new {message = messagetowrite });
             }
 
             return View(course);
         }
 
         [Authorize(Roles = "Teacher")]
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id, string Message = "None")
         {
+            ViewBag.Message = Message;
 
             if (id == null)
             {
@@ -94,7 +98,8 @@ namespace LSM.Controllers
             {
                 db.Entry(course).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                string messagetowrite = "Course " + course.Name + " edited!";
+                return RedirectToAction("Index", new {message = messagetowrite });
             }
             return View(course);
         }
@@ -128,7 +133,8 @@ namespace LSM.Controllers
             
             db.Courses.Remove(course);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            string messagetowrite = "Course " + course.Name + " deleted!";
+            return RedirectToAction("Index", new {message = messagetowrite});
         }
 
         protected override void Dispose(bool disposing)

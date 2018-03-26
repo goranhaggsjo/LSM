@@ -2,6 +2,26 @@
 
 @{
     ViewBag.Title = "Module info";
+    string messagetosend = ViewBag.Message;
+    string colortoshow = "";
+
+
+
+    if (!(ViewBag.Message == "None"))
+    {
+
+        if (messagetosend.Substring(messagetosend.Length - 8) == "deleted!")
+        {
+            colortoshow = "red";
+        }
+        else
+        {
+            colortoshow = "green";
+
+
+        }
+
+    }
 }
 
 <nav aria-label="breadcrumb">
@@ -13,6 +33,10 @@
 </nav>
 
 <h1>Module: @Model.Name</h1>
+@if (!(ViewBag.Message == "None"))
+{
+    <div id="message2" class="@colortoshow"><p>@ViewBag.Message</p></div>
+}
 <div class="container">
     <div class="row">
         <div class="col-md-6">
@@ -99,21 +123,21 @@
                                 @Html.ActionLink(item.Name, "Edit", "Activities", new { id = item.Id }, new { @class = "btn btn-info" })
                             </td>
                             <td>
-                                @item.Day 
+                                @item.Day
                             </td>
                             <td>
                                 @if (item.Pass == LSM.Models.Epass.FM)
-    {
-                            <p>Morning</p>
-}
+                                {
+                                    <p>Morning</p>
+                                }
                                 @if (item.Pass == LSM.Models.Epass.EM)
-    {
-                            <p>Afternoon</p>
-}
+                                {
+                                    <p>Afternoon</p>
+                                }
                                 @if (item.Pass == LSM.Models.Epass.FMEM)
-    {
-                            <p>Full day</p>
-}
+                                {
+                                    <p>Full day</p>
+                                }
                             </td>
                         </tr>
                     }
@@ -126,4 +150,7 @@
 </div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/ScriptforLSM.js")
 }
+
+
