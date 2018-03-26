@@ -57,7 +57,8 @@ namespace LSM.Controllers
             {
                 db.Activitys.Add(activity);
                 db.SaveChanges();
-                return RedirectToAction("Edit", "Modules", new { id = activity.ModuleId });
+                string messagetowrite = "Activity " + activity.Name + " added!";
+                return RedirectToAction("Edit", "Modules", new { id = activity.ModuleId, message = messagetowrite });
             }
 
             ViewBag.ModuleId = new SelectList(db.Modules, "Id", "Name", activity.ModuleId);
@@ -92,7 +93,9 @@ namespace LSM.Controllers
             {
                 db.Entry(activity).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                string messagetowrite = "Activity " + activity.Name + " edited!";
+                return RedirectToAction("Edit", "Modules", new { id = activity.ModuleId, message = messagetowrite });
+              
             }
             ViewBag.ModuleId = new SelectList(db.Modules, "Id", "Name", activity.ModuleId);
             return View(activity);
@@ -122,7 +125,8 @@ namespace LSM.Controllers
             Activity activity = db.Activitys.Find(id);
             db.Activitys.Remove(activity);
             db.SaveChanges();
-            return RedirectToAction("Edit", "Modules", new { id = activity.ModuleId });
+            string messagetowrite = "Activity " + activity.Name + " deleted!";
+            return RedirectToAction("Edit", "Modules", new { id = activity.ModuleId, message = messagetowrite});
 
         }
 

@@ -147,8 +147,26 @@ namespace LSM.Controllers
         //
         // GET: /Account/Register
         [AllowAnonymous]
-        public ActionResult Register(int? CourseId, bool Teacher)
+        public ActionResult Register(int? CourseId, bool? Teacher)
         {
+
+            if (Teacher == null)
+            {
+
+                return RedirectToAction("Index", "Courses");
+            }
+
+            if (CourseId == null)
+            {
+                ViewBag.CourseName = "Teacher";
+
+            }
+            else { 
+            Course TheCourse = db.Courses.Where(m => m.Id == CourseId).First();
+            ViewBag.CourseName = TheCourse.Name;
+            ViewBag.CourseId = CourseId;    
+            
+            }
             ViewBag.Courses = new SelectList(db.Courses, "Id", "Name").ToList();
             return View();
         }
@@ -200,10 +218,14 @@ namespace LSM.Controllers
 
             // If we got this far, something failed, redisplay form
             //return View(model);
-            if (model.Teacher)
-                return RedirectToAction("Index", "Courses");
-            else
-                return RedirectToAction("Edit", "Courses", new { id = model.CourseId });
+            if (model.Teacher) {
+                string messagetosend = "Teacher " + model.FirstName + " " + model.LastName + " added!";
+                return RedirectToAction("Index", "Courses", new { id = model.CourseId, Message = messagetosend });
+            }
+            else {             
+                string messagetosend = "Student " + model.FirstName + " " + model.LastName + " added!";          
+                return RedirectToAction("Edit", "Courses", new { id = model.CourseId, Message = messagetosend});
+            }
         }
 
         //

@@ -1,7 +1,29 @@
 ﻿@model IEnumerable<LSM.Models.Course>
 
 @{
+    /**/
+
     ViewBag.Title = "Index";
+    string messagetosend = ViewBag.Message;
+    string colortoshow = "";
+
+
+
+    if (!(ViewBag.Message == "None"))
+    {
+
+        if (messagetosend.Substring(messagetosend.Length - 8) == "deleted!")
+        {
+            colortoshow = "red";
+        }
+        else
+        {
+            colortoshow = "green";
+
+
+        }
+
+    }
 }
 
 <nav aria-label="breadcrumb">
@@ -11,7 +33,10 @@
 </nav>
 
 <h1>Courses</h1>
-
+@if (!(ViewBag.Message == "None"))
+{
+    <div id="message2" class="@colortoshow"><p>@ViewBag.Message</p></div>
+}
 <p>
     @Html.ActionLink("Create New", "Create", new { id = "" }, new { @class = "btn btn-success" })
 </p>
@@ -39,3 +64,7 @@
     }
 
 </table>
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/ScriptforLSM.js")
+}
