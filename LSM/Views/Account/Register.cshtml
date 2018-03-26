@@ -6,7 +6,17 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item">@Html.ActionLink("Home", "Index", "Home")</li>
-        <li class="breadcrumb-item active" aria-current="page">Register</li>
+        @if (ViewBag.CourseName == "Teacher")
+    {
+        <li class="breadcrumb-item active" aria-current="page">Register Teacher</li>
+        }
+        else{
+            string ModelName = ViewBag.CourseName;
+            int CourseId = ViewBag.CourseId;
+        <li class="breadcrumb-item">@Html.ActionLink("Home", "Index", "Home")</li>
+        <li class="breadcrumb-item">@Html.ActionLink("Course: " + ModelName, "Edit", "Courses", new { id = CourseId }, new { @class = "breadcrum-text" })</li>
+        <li class="breadcrumb-item active" aria-current="page">Register Student</li>
+        }
     </ol>
 </nav>
 

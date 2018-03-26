@@ -1,8 +1,42 @@
 ﻿@model LSM.Models.Course
 
 @{
-    ViewBag.Title = "Course info " + Model.Name;
 
+    ViewBag.Title = "Course info " + Model.Name;
+    string messagetosend = ViewBag.Message;
+    string colortoshow = "";
+
+
+
+    if (!(ViewBag.Message == "None"))
+    {
+
+        if (messagetosend.Substring(messagetosend.Length - 8) == "deleted!")
+        {
+            colortoshow = "red";
+        }
+        else
+        {
+            colortoshow = "green";
+
+
+        }
+
+    }
+
+    //if (!(ViewBag.Message == "None"))
+    //{
+
+    //    if (messagetosend[messagetosend.Length - 4] == 't')
+    //    {
+    //        colortoshow = "red";
+    //    }
+    //    else
+    //    {
+    //        colortoshow = "green";
+    //    }
+
+    //}
 
 }
 @* Changed *@
@@ -16,10 +50,15 @@
 
 
 <h1>Course: @Model.Name</h1>
-
+@if (!(ViewBag.Message == "None"))
+{
+<div id="message2" class="@colortoshow"><p>@ViewBag.Message</p></div>
+}
 <div class="container">
+
     <div class="row">
         <div class="col-md-6">
+
 
             @using (Html.BeginForm())
             {
