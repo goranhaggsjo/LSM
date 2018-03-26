@@ -13,7 +13,7 @@
 <h1>Courses</h1>
 
 <p>
-    @Html.ActionLink("Create New", "Create", new { id = "" }, new { @class = "btn btn-success" })
+    @Html.ActionLink("Add new Course", "Create", new { id = "" }, new { @class = "btn btn-success" })
 </p>
 <table class="table">
     <tr>
@@ -29,7 +29,6 @@
                 @Html.ActionLink(item.Name, "Edit", new { id = item.Id }, new { @class = "btn  btn-info" })
             </td>
             <td>
-                @*@Html.DisplayFor(modelItem => item.StartDate)*@
                 @item.StartDate.ToShortDateString()
             </td>
             <td>
