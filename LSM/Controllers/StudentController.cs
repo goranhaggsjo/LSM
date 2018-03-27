@@ -23,7 +23,22 @@ namespace LSM.Controllers
             var user = db.Users.Find(usernamne);
             
             Course course = user.Course;
-          
+           var ModuelList = user.Course.Modules;
+            var ModuleListNow = new List<Module>();
+            foreach(var m in ModuelList)
+            {
+                if ((m.StopDate > DateTime.Now) && (m.StartDate < DateTime.Now.AddDays(6)))
+                {
+                   ModuleListNow.Add(m);
+
+                    
+                }
+                
+               
+
+            }
+            ViewBag.ModueListNow = ModuleListNow;
+
             return View(course);
         }
 
