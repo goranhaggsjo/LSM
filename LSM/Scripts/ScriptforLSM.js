@@ -1,8 +1,10 @@
 ﻿$(document).ready(function () {
     $('#message2').fadeIn('slow', function () {
-        $('#message2').delay(5000).fadeOut();
+        $('#message2').delay(3000).fadeOut('slow');
     });
 });
+
+
 
 
 $("#buttonModules").on("click", function () {

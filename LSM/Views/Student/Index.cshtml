@@ -1,15 +1,18 @@
 ﻿@model LSM.Models.Course
+@using LSM.Models;
 
 @{
     ViewBag.Title = "Course info " + Model.Name;
 
+    var ModuleListNow = new List<Module>();
+    ModuleListNow = ViewBag.ModueListNow;
 
 }
 @* Changed *@
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-       <li class="breadcrumb-item active" aria-current="page">Home</li>
+        <li class="breadcrumb-item active" aria-current="page">Home</li>
     </ol>
 </nav>
 
@@ -31,6 +34,29 @@
 
             <div id="tableModules">
                 <div class="table_div">
+                    <h3>Modules this week</h3>
+                    <table class="table">
+                        <tr>
+                            <th>View</th>
+                            <th>Start</th>
+                            <th>End</th>
+                        </tr>
+
+                        @foreach (var item in ModuleListNow)
+        {
+                <tr>
+                    <td>@Html.ActionLink(@item.Name, "Module", "Student", new { id = item.Id }, new { @class = "btn  btn-info" })</td>
+                    <td>@item.StartDate</td>
+                    <td>@item.StopDate</td>
+                </tr>
+
+
+}
+
+
+
+                    </table>
+                    <h3>All Modules</h3>
                     <table class="table">
                         <tr>
                             <th>View</th>
@@ -39,15 +65,17 @@
                         </tr>
 
                         @foreach (var item in Model.Modules.ToList())
-                        {
-                            <tr>
-                                <td>@Html.ActionLink(@item.Name, "Module", "Student", new { id = item.Id }, new { @class = "btn  btn-info" })</td>
-                                <td>@item.StartDate</td>
-                                <td>@item.StopDate</td>
-                            </tr>
+        {
+                <tr>
+                    <td>@Html.ActionLink(@item.Name, "Module", "Student", new { id = item.Id }, new { @class = "btn  btn-info" })</td>
+                    <td>@item.StartDate</td>
+                    <td>@item.StopDate</td>
+                </tr>
 
 
-                        }
+}
+
+
 
                     </table>
 
