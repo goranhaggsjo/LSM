@@ -185,7 +185,6 @@ namespace LSM.Controllers
 
             var user1 = db.Users.Include(x => x.Roles).ToList();
 
-
             foreach (var user in user1)
             {
                 var u = new userview();
@@ -204,12 +203,11 @@ namespace LSM.Controllers
                     u.CourseName = course2.Name;
                 }
                    
-
-                Console.WriteLine(u.FirstName);
-
                 var userManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
                 var roles = userManager.GetRoles(user.Id);
                 var joinedRoles = string.Join(", ", roles);
+                u.Role = joinedRoles;
+                users.Add(u);
 
                 /*
                 
@@ -255,9 +253,7 @@ namespace LSM.Controllers
 
                 //u.Role = "N/A";
 
-                u.Role = joinedRoles;
- 
-                users.Add(u);
+
             }
 
             return View(users.ToList());

@@ -198,6 +198,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ModulesController.cs" />
+    <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -224,6 +225,10 @@
     <Compile Include="Migrations\201803230943570_CourseInUserView.cs" />
     <Compile Include="Migrations\201803230943570_CourseInUserView.Designer.cs">
       <DependentUpon>201803230943570_CourseInUserView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803231433127_ActivityDataType.cs" />
+    <Compile Include="Migrations\201803231433127_ActivityDataType.Designer.cs">
+      <DependentUpon>201803231433127_ActivityDataType.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -322,6 +327,7 @@
     <Content Include="Views\Courses\Act.cshtml" />
     <Content Include="Views\Modules\Create2.cshtml" />
     <Content Include="Views\Account\Reg2.cshtml" />
+    <Content Include="Views\Upload\UploadFile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -357,6 +363,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803230943570_CourseInUserView.resx">
       <DependentUpon>201803230943570_CourseInUserView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803231433127_ActivityDataType.resx">
+      <DependentUpon>201803231433127_ActivityDataType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
