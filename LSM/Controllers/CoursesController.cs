@@ -24,7 +24,7 @@ namespace LSM.Controllers
             var user = db.Users.Find(usernamne);
             if (user.Course == null)
             {
-                return View(db.Courses.ToList());
+                return View(db.Courses.OrderByDescending(x => x.StartDate).ToList());
 
             }
             return RedirectToAction("Index", "Student");

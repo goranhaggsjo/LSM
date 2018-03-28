@@ -70,33 +70,23 @@ namespace LSM.Controllers
 
         // GET: Modules/Edit/5
         public ActionResult Edit(int? id, string message = "None")
-        {
-            ViewBag.Message = message;
-
-
+        {   ViewBag.Message = message;
             if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            {return RedirectToAction("Index", "Courses");
             }
             Module module = db.Modules.Find(id);
             if (module == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.CourseId = new SelectList(db.Courses, "Id", "Name", module.CourseId);
+            {return RedirectToAction("Index", "Courses");
+            }            
             return View(module);
         }
 
-        // POST: Modules/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Modules/Edit/5      
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Name,Description,StartDate,StopDate,CourseId")] Module module)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(module).State = EntityState.Modified;
+        {  if (ModelState.IsValid)
+            {  db.Entry(module).State = EntityState.Modified;
                 db.SaveChanges();
                 string messagetowrite = "Module " + module.Name + " edited!";
                 return RedirectToAction("Edit", "Courses", new { id = module.CourseId, message = messagetowrite });
@@ -107,15 +97,12 @@ namespace LSM.Controllers
 
         // GET: Modules/Delete/5
         public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        {  if (id == null)
+            {  return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Module module = db.Modules.Find(id);
             if (module == null)
-            {
-                return HttpNotFound();
+            { return HttpNotFound();
             }
             return View(module);
         }

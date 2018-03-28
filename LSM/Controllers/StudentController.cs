@@ -24,21 +24,36 @@ namespace LSM.Controllers
             
             Course course = user.Course;
            var ModuelList = user.Course.Modules;
-            var ModuleListNow = new List<Module>();
-            foreach(var m in ModuelList)
+            //var ModuleListNow = new List<Module>();
+            var ActivityListNow = new List<Activity>();
+            foreach (var m in ModuelList)
             {
-                if ((m.StopDate > DateTime.Now) && (m.StartDate < DateTime.Now.AddDays(6)))
-                {
-                   ModuleListNow.Add(m);
+                //if ((m.StopDate > DateTime.Now) && (m.StartDate < DateTime.Now.AddDays(6)))
+                //{
+                //   ModuleListNow.Add(m);
 
                     
+                //}
+
+                if ((m.StopDate > DateTime.Now) && (m.StartDate < DateTime.Now.AddDays(6)))
+                {
+
+                    foreach (var a in m.Activitys)                       
+                     if((a.Day > DateTime.Now) && (a.Day < DateTime.Now.AddDays(6)))
+                    {
+                        ActivityListNow.Add(a);
+
+
+                    }
+
+
                 }
-                
-               
+
+
 
             }
-            ViewBag.ModueListNow = ModuleListNow;
-
+            //ViewBag.ModueListNow = ModuleListNow;
+            ViewBag.ActivityListNow = ActivityListNow.OrderByDescending(x=>x.Day).ToList();
             return View(course);
         }
 

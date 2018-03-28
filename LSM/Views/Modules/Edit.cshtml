@@ -1,27 +1,18 @@
 ﻿@model LSM.Models.Module
 
-@{
-    ViewBag.Title = "Module info";
-    string messagetosend = ViewBag.Message;
+@{  ViewBag.Title = "Module info";
+    string messagetoshow = ViewBag.Message;
     string colortoshow = "";
-
-
-
-    if (!(ViewBag.Message == "None"))
+    if (!(messagetoshow == "None"))
     {
-
-        if (messagetosend.Substring(messagetosend.Length - 8) == "deleted!")
-        {
-            colortoshow = "red";
+        if (messagetoshow.Substring(messagetoshow.Length - 8) == "deleted!")
+        { colortoshow = "red";
         }
         else
-        {
-            colortoshow = "green";
-
-
+        {colortoshow = "green";
         }
-
     }
+   
 }
 
 <nav aria-label="breadcrumb">
@@ -33,10 +24,12 @@
 </nav>
 
 <h1>Module: @Model.Name</h1>
-@if (!(ViewBag.Message == "None"))
+@if (!(messagetoshow == "None"))
 {
-    <div id="message2" class="@colortoshow"><p>@ViewBag.Message</p></div>
+    <div id="message2" class="@colortoshow"><p>@messagetoshow</p></div>
 }
+
+
 <div class="container">
     <div class="row">
         <div class="col-md-6">
@@ -114,25 +107,40 @@
                         <th>Day</th>
                         <th>Pass</th>
                     </tr>
-
-
-                    @foreach (var item in Model.Activitys.ToList())
+                    @foreach (var item in Model.Activitys.OrderByDescending(x=>x.Day).ToList())
                     {
                         <tr>
                             <td>
                                 @Html.ActionLink(item.Name, "Edit", "Activities", new { id = item.Id }, new { @class = "btn btn-info" })
                             </td>
                             <td>
-                                @item.Day
+                                @{  string month = item.Day.Month.ToString();
+                                }
+                                @if(month.Length == 1)
+                                {
+                                    month = 0 + month;
+                                }                                                         
+
+                                 @{ 
+                                     string day = item.Day.Day.ToString();
+                                }
+
+                                
+                                @if (day.Length == 1)
+                                {
+                                   day = 0 + day;
+                                }
+                            
+                                @item.Day.Year-@month-@day
+
+
                             </td>
                             <td>
                                 @if (item.Pass == LSM.Models.Epass.FM)
-                                {
-                                    <p>Morning</p>
+                                {<p>Morning</p>
                                 }
                                 @if (item.Pass == LSM.Models.Epass.EM)
-                                {
-                                    <p>Afternoon</p>
+                                {<p>Afternoon</p>
                                 }
                                 @if (item.Pass == LSM.Models.Epass.FMEM)
                                 {
